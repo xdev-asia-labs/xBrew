@@ -1,0 +1,69 @@
+/* Navigation */
+"navigation.overview" = "Overview";
+"navigation.packages" = "Packages";
+"navigation.casks" = "Casks";
+"navigation.services" = "Services";
+"navigation.maintenance" = "Maintenance";
+
+/* Dashboard */
+"dashboard.title" = "Overview";
+"dashboard.subtitle" = "Homebrew package manager dashboard";
+"dashboard.total_packages" = "Total Packages";
+"dashboard.outdated" = "Outdated";
+"dashboard.services_running" = "Services Running";
+"dashboard.updates_available" = "Updates available";
+"dashboard.package_distribution" = "Package Distribution";
+"dashboard.formulas" = "Formulas";
+"dashboard.quick_actions" = "Quick Actions";
+"dashboard.update_all" = "Update All";
+"dashboard.cleanup" = "Cleanup";
+"dashboard.health_check" = "Health Check";
+"dashboard.system_info" = "System Information";
+"dashboard.homebrew_version" = "Homebrew Version";
+"dashboard.installed" = "installed";
+"dashboard.total" = "total";
+"dashboard.running" = "running";
+
+/* Packages */
+"packages.title" = "Formulas";
+"packages.search" = "Search formulas...";
+"packages.outdated_only" = "Outdated Only";
+"packages.upgrade" = "Upgrade";
+"packages.upgrade_all" = "Upgrade All";
+"packages.info" = "Info";
+"packages.uninstall" = "Uninstall";
+"packages.no_packages" = "No Packages Installed";
+"packages.no_packages_found" = "No Packages Found";
+
+/* Maintenance */
+"maintenance.title" = "Maintenance";
+"maintenance.subtitle" = "Keep your Homebrew installation healthy";
+"maintenance.system_health" = "System Health";
+"maintenance.healthy" = "Healthy";
+"maintenance.needs_attention" = "Needs Attention";
+"maintenance.homebrew_status" = "Homebrew Status";
+"maintenance.all_up_to_date" = "All packages up to date";
+"maintenance.needs_updating" = "packages need updating";
+"maintenance.actions" = "Maintenance Actions";
+"maintenance.update_homebrew" = "Update Homebrew";
+"maintenance.run_diagnostics" = "Run Diagnostics";
+"maintenance.cleanup_old" = "Cleanup Old Versions";
+"maintenance.run" = "Run";
+
+/* Brewfile */
+"brewfile.export_downloads" = "Export to Downloads";
+"brewfile.export_icloud" = "Export to iCloud";
+"brewfile.import_file" = "Import from File";
+"brewfile.import_icloud" = "Import from iCloud";
+"brewfile.last_sync" = "Last sync";
+
+/* Common */
+"common.install" = "Install";
+"common.refresh" = "Refresh";
+"common.loading" = "Loading";
+"common.done" = "Done";
+"common.close" = "Close";
+"common.cancel" = "Cancel";
+"common.save" = "Save";
+"common.settings" = "Settings";
+"common.language" = "Language";

@@ -1,0 +1,69 @@
+/* Navigation */
+"navigation.overview" = "Tổng quan";
+"navigation.packages" = "Gói cài đặt";
+"navigation.casks" = "Ứng dụng";
+"navigation.services" = "Dịch vụ";
+"navigation.maintenance" = "Bảo trì";
+
+/* Dashboard */
+"dashboard.title" = "Tổng quan";
+"dashboard.subtitle" = "Bảng điều khiển Homebrew";
+"dashboard.total_packages" = "Tổng số gói";
+"dashboard.outdated" = "Cần cập nhật";
+"dashboard.services_running" = "Dịch vụ đang chạy";
+"dashboard.updates_available" = "Có bản cập nhật";
+"dashboard.package_distribution" = "Phân loại gói";
+"dashboard.formulas" = "Gói cài đặt";
+"dashboard.quick_actions" = "Thao tác nhanh";
+"dashboard.update_all" = "Cập nhật tất cả";
+"dashboard.cleanup" = "Dọn dẹp";
+"dashboard.health_check" = "Kiểm tra hệ thống";
+"dashboard.system_info" = "Thông tin hệ thống";
+"dashboard.homebrew_version" = "Phiên bản Homebrew";
+"dashboard.installed" = "đã cài";
+"dashboard.total" = "tổng cộng";
+"dashboard.running" = "đang chạy";
+
+/* Packages */
+"packages.title" = "Gói cài đặt";
+"packages.search" = "Tìm kiếm gói...";
+"packages.outdated_only" = "Chỉ hiện gói cũ";
+"packages.upgrade" = "Nâng cấp";
+"packages.upgrade_all" = "Nâng cấp tất cả";
+"packages.info" = "Thông tin";
+"packages.uninstall" = "Gỡ cài đặt";
+"packages.no_packages" = "Chưa cài gói nào";
+"packages.no_packages_found" = "Không tìm thấy gói";
+
+/* Maintenance */
+"maintenance.title" = "Bảo trì";
+"maintenance.subtitle" = "Duy trì Homebrew hoạt động tốt";
+"maintenance.system_health" = "Tình trạng hệ thống";
+"maintenance.healthy" = "Tốt";
+"maintenance.needs_attention" = "Cần chú ý";
+"maintenance.homebrew_status" = "Trạng thái Homebrew";
+"maintenance.all_up_to_date" = "Tất cả gói đã cập nhật";
+"maintenance.needs_updating" = "gói cần cập nhật";
+"maintenance.actions" = "Thao tác bảo trì";
+"maintenance.update_homebrew" = "Cập nhật Homebrew";
+"maintenance.run_diagnostics" = "Chạy chẩn đoán";
+"maintenance.cleanup_old" = "Dọn dẹp phiên bản cũ";
+"maintenance.run" = "Chạy";
+
+/* Brewfile */
+"brewfile.export_downloads" = "Xuất ra Downloads";
+"brewfile.export_icloud" = "Xuất lên iCloud";
+"brewfile.import_file" = "Nhập từ tệp";
+"brewfile.import_icloud" = "Nhập từ iCloud";
+"brewfile.last_sync" = "Đồng bộ lần cuối";
+
+/* Common */
+"common.install" = "Cài đặt";
+"common.refresh" = "Làm mới";
+"common.loading" = "Đang tải";
+"common.done" = "Xong";
+"common.close" = "Đóng";
+"common.cancel" = "Hủy";
+"common.save" = "Lưu";
+"common.settings" = "Cài đặt";
+"common.language" = "Ngôn ngữ";
