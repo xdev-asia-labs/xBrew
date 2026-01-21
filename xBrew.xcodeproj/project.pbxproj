@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 63;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,7 @@
 		40E4F536C359701D736317AD /* xBrewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACB389C998A9B0577C8311D /* xBrewApp.swift */; };
 		44D46A70775497C1F1212DFD /* ModernTapsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CDCCF0E54015630A518D3A /* ModernTapsView.swift */; };
 		48E74A7CA6B56ED38451756E /* LanguagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C132548D169EA38B2EC72EF1 /* LanguagePicker.swift */; };
+		5C38B042068C01DE55B044A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16CA78E0288553695F3D61BB /* Assets.xcassets */; };
 		5FA127B924986082EDDCAC79 /* HomebrewManager+Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90787004F3426E73E4ADD1D1 /* HomebrewManager+Commands.swift */; };
 		619071991EC0CA9617100C65 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCD8566C73EEA9A8C207B84 /* AppConfig.swift */; };
 		644ABA34F47531B9B2D73657 /* PackageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BF0319FB69F04793202102 /* PackageCard.swift */; };
@@ -31,6 +32,7 @@
 		D2DE409A6EEB470C3C2EEE3B /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5C019FB1298820A949FC1 /* SearchBar.swift */; };
 		D62CE3FDCD7D0BFDCE9657F2 /* HomebrewInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DFCB6F5098681C116FD01D /* HomebrewInstaller.swift */; };
 		E23A9926BA32918E020CB87F /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB20D71B4E5A1E834DA7B84 /* ViewModifiers.swift */; };
+		F12791957E367B1372643CDB /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 94C20B484477DA8E6CAFC698 /* AppIcon.png */; };
 		F14B59AF088919879EDCC572 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D73574CD67A7C36546BADE /* ContentView.swift */; };
 		F205424F100AA430C203E2AE /* HomebrewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E56518471697710A52E7B87 /* HomebrewModels.swift */; };
 		FF140ACC5A79B3AE8BD80298 /* ModernPackagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5D3D1682A0BDB621129D61 /* ModernPackagesView.swift */; };
@@ -39,6 +41,7 @@
 /* Begin PBXFileReference section */
 		0296F2987310D440A399634E /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		0598FD372D46ABAE82FE9611 /* BrewfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewfileManager.swift; sourceTree = "<group>"; };
+		16CA78E0288553695F3D61BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		16CDCCF0E54015630A518D3A /* ModernTapsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernTapsView.swift; sourceTree = "<group>"; };
 		1DCD8566C73EEA9A8C207B84 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		1E56518471697710A52E7B87 /* HomebrewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomebrewModels.swift; sourceTree = "<group>"; };
@@ -58,6 +61,7 @@
 		8CB20D71B4E5A1E834DA7B84 /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		8D92D1124F12692966C0BE4C /* NavigationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationState.swift; sourceTree = "<group>"; };
 		90787004F3426E73E4ADD1D1 /* HomebrewManager+Commands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomebrewManager+Commands.swift"; sourceTree = "<group>"; };
+		94C20B484477DA8E6CAFC698 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
 		9A8CCAAE7221B79B634126A4 /* HomebrewServicesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomebrewServicesManager.swift; sourceTree = "<group>"; };
 		9C38100C83A21BF903DCDDCB /* PackageSheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageSheets.swift; sourceTree = "<group>"; };
 		A3924D6DA6620D889FF53FCD /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -82,6 +86,8 @@
 		0806A7B64266521EFDC70DEE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				94C20B484477DA8E6CAFC698 /* AppIcon.png */,
+				16CA78E0288553695F3D61BB /* Assets.xcassets */,
 				C2D088679CF5D03DCAB9D1FF /* Info.plist */,
 				C3A12800BCC005F599E2BDAF /* xBrew.entitlements */,
 				063AAE2F9D23F6EBB421DE32 /* Localizations */,
@@ -202,6 +208,7 @@
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					6E95906D847FF8F9138005E2 = {
+						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -217,6 +224,7 @@
 			);
 			mainGroup = 7A9FC7F6FB8C796C5B6636A1;
 			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -230,6 +238,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F12791957E367B1372643CDB /* AppIcon.png in Resources */,
+				5C38B042068C01DE55B044A3 /* Assets.xcassets in Resources */,
 				1DF3A01D4B150BEF86A05C16 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,7 +303,7 @@
 				CODE_SIGN_ENTITLEMENTS = xBrew/Resources/xBrew.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = M6C7NX9MUZ;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -374,7 +384,7 @@
 				CODE_SIGN_ENTITLEMENTS = xBrew/Resources/xBrew.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = M6C7NX9MUZ;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
