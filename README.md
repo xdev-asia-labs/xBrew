@@ -1,7 +1,7 @@
 # xBrew
 
 <div align="center">
-  <img src="showcase/icon.png" alt="xBrew Logo" width="128"/>
+  <img src="xBrew/Resources/AppIcon.png" alt="xBrew Logo" width="128"/>
   
   ### Modern Homebrew Package Manager for macOS
   
