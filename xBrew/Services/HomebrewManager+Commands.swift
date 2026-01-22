@@ -89,6 +89,7 @@ extension HomebrewManager {
     }
     
     /// Execute brew command with optional real-time output callback
+    /// Runs on background thread to prevent UI freezing
     func runBrewCommand(_ args: [String], outputHandler: ((String) -> Void)? = nil) async -> String? {
         guard let brewPath = findBrewPath() else {
             await MainActor.run {
@@ -96,46 +97,49 @@ extension HomebrewManager {
             }
             return nil
         }
-        
-        return await withCheckedContinuation { continuation in
-            let process = Process()
-            process.executableURL = URL(fileURLWithPath: brewPath)
-            process.arguments = args
-            process.environment = AppConfig.brewEnvironment()
-            
-            let outputPipe = Pipe()
-            let errorPipe = Pipe()
-            process.standardOutput = outputPipe
-            process.standardError = errorPipe
-            
-            var fullOutput = ""
-            
-            do {
-                try process.run()
-                
-                // Simple blocking read (no callbacks)
-                let outputData = outputPipe.fileHandleForReading.readDataToEndOfFile()
-                let errorData = errorPipe.fileHandleForReading.readDataToEndOfFile()
-                
-                fullOutput = (String(data: outputData, encoding: .utf8) ?? "") +
-                            (String(data: errorData, encoding: .utf8) ?? "")
-                
-                process.waitUntilExit()
-                
-                if process.terminationStatus != 0 {
-                    Task { @MainActor in
-                        self.lastError = String(data: errorData, encoding: .utf8) ?? ""
+
+        // Run on background thread to prevent UI blocking
+        return await Task.detached(priority: .userInitiated) {
+            await withCheckedContinuation { continuation in
+                let process = Process()
+                process.executableURL = URL(fileURLWithPath: brewPath)
+                process.arguments = args
+                process.environment = AppConfig.brewEnvironment()
+
+                let outputPipe = Pipe()
+                let errorPipe = Pipe()
+                process.standardOutput = outputPipe
+                process.standardError = errorPipe
+
+                var fullOutput = ""
+
+                do {
+                    try process.run()
+
+                    // Blocking read on background thread - safe here
+                    let outputData = outputPipe.fileHandleForReading.readDataToEndOfFile()
+                    let errorData = errorPipe.fileHandleForReading.readDataToEndOfFile()
+
+                    fullOutput = (String(data: outputData, encoding: .utf8) ?? "") +
+                                (String(data: errorData, encoding: .utf8) ?? "")
+
+                    process.waitUntilExit()
+
+                    if process.terminationStatus != 0 {
+                        Task { @MainActor in
+                            self.lastError = String(data: errorData, encoding: .utf8) ?? ""
+                        }
                     }
+
+                    continuation.resume(returning: fullOutput.isEmpty ? nil : fullOutput)
+                } catch {
+                    Task { @MainActor in
+                        self.lastError = error.localizedDescription
+                    }
+                    continuation.resume(returning: nil)
                 }
-                
-                continuation.resume(returning: fullOutput.isEmpty ? nil : fullOutput)
-            } catch {
-                Task { @MainActor in
-                    self.lastError = error.localizedDescription
-                }
-                continuation.resume(returning: nil)
             }
-        }
+        }.value
     }
     
     /// Find Homebrew executable path

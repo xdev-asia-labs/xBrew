@@ -6,40 +6,42 @@ struct ContentView: View {
     @StateObject private var brewfileManager = BrewfileManager.shared
     @StateObject private var navigationState = NavigationState()
     @StateObject private var installer = HomebrewInstaller()
-    
+    @StateObject private var settings = SettingsManager.shared
+
     @State private var showingInstallSheet = false
     @State private var showingBrewfileImport = false
     @State private var columnVisibility = NavigationSplitViewVisibility.all
-    
+    @FocusState private var isSearchFocused: Bool
+
     var body: some View {
         Group {
             if !brew.isBrewInstalled {
-            brewNotInstalledView
-        } else {
-            NavigationSplitView(columnVisibility: $columnVisibility) {
-                // Sidebar
-                sidebarContent
-            } detail: {
-                // Main Content
-                mainContent
-                    .toolbar {
-                        ToolbarItemGroup(placement: .automatic) {
-                            toolbarButtons
+                brewNotInstalledView
+            } else {
+                NavigationSplitView(columnVisibility: $columnVisibility) {
+                    // Sidebar
+                    sidebarContent
+                } detail: {
+                    // Main Content
+                    mainContent
+                        .toolbar {
+                            ToolbarItemGroup(placement: .automatic) {
+                                toolbarButtons
+                            }
                         }
-                    }
-            }
-            .navigationSplitViewStyle(.balanced)
-            .sheet(isPresented: $showingInstallSheet) {
-                // TODO: Create InstallSheet component
-                Text("Install Package")
-                    .padding()
-            }
-            .fileImporter(
-                isPresented: $showingBrewfileImport,
-                allowedContentTypes: [.plainText]
-            ) { result in
-                handleBrewfileImport(result)
-            }
+                }
+                .navigationSplitViewStyle(.balanced)
+                .sheet(isPresented: $showingInstallSheet) {
+                    // TODO: Create InstallSheet component
+                    Text("Install Package")
+                        .padding()
+                }
+                .fileImporter(
+                    isPresented: $showingBrewfileImport,
+                    allowedContentTypes: [.plainText]
+                ) { result in
+                    handleBrewfileImport(result)
+                }
             }
         }
         .onAppear {
@@ -131,7 +133,7 @@ struct ContentView: View {
             
             // Loading Indicator
             if brew.isLoading || brew.isUpdating {
-                ProgressView()
+                ProgressView().frame(width: 16, height: 16)
                     .controlSize(.small)
                     .frame(width: 16, height: 16)
             }
@@ -148,7 +150,8 @@ struct ContentView: View {
                 } label: {
                     Label("Export to Downloads", systemImage: "square.and.arrow.down.on.square")
                 }
-                
+                .help("Save Brewfile to Downloads folder")
+
                 Button {
                     Task {
                         let success = await brewfileManager.exportToiCloud()
@@ -160,16 +163,18 @@ struct ContentView: View {
                     Label("Export to iCloud", systemImage: "icloud.and.arrow.up")
                 }
                 .disabled(brewfileManager.isExporting || brewfileManager.isSyncing)
-                
+                .help("Sync Brewfile to iCloud Drive")
+
                 Divider()
-                
+
                 // Import options
                 Button {
                     showingBrewfileImport = true
                 } label: {
                     Label("Import from File", systemImage: "square.and.arrow.up.on.square")
                 }
-                
+                .help("Import Brewfile from local file")
+
                 Button {
                     Task {
                         let result = await brewfileManager.importFromiCloud()
@@ -179,9 +184,10 @@ struct ContentView: View {
                     Label("Import from iCloud", systemImage: "icloud.and.arrow.down")
                 }
                 .disabled(!brewfileManager.hasiCloudBrewfile() || brewfileManager.isImporting || brewfileManager.isSyncing)
-                
+                .help("Import Brewfile from iCloud Drive")
+
                 Divider()
-                
+
                 // Status
                 if let lastSync = brewfileManager.lastSyncDate {
                     Text("Last sync: \(lastSync.formatted(date: .abbreviated, time: .shortened))")
@@ -191,8 +197,7 @@ struct ContentView: View {
             } label: {
                 Label("Brewfile", systemImage: "doc.text")
             }
-            .labelStyle(.iconOnly)
-            .help("Brewfile operations")
+            .help("Brewfile operations - Export and import your package list")
             
             // Install Button
             Button {
@@ -209,8 +214,7 @@ struct ContentView: View {
             } label: {
                 Label("Refresh", systemImage: "arrow.clockwise")
             }
-            .labelStyle(.iconOnly)
-            .help("Refresh package list")
+            .help("Refresh all packages, casks, and services")
             .disabled(brew.isLoading || brew.isUpdating)
         }
     }
@@ -237,7 +241,7 @@ struct ContentView: View {
             if installer.isInstalling {
                 VStack(spacing: DesignSystem.Spacing.md) {
                     HStack {
-                        ProgressView()
+                        ProgressView().frame(width: 16, height: 16)
                             .scaleEffect(0.8)
                         Text("Installing Homebrew...")
                             .font(.system(size: DesignSystem.Typography.callout, weight: .medium))

@@ -48,7 +48,7 @@ struct PackageCard: View {
                     } label: {
                         HStack(spacing: 4) {
                             if isUpgrading {
-                                ProgressView()
+                                ProgressView().frame(width: 16, height: 16)
                                     .controlSize(.small)
                                     .frame(width: 12, height: 12)
                             } else {

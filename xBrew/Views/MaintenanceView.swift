@@ -190,7 +190,7 @@ struct MaintenanceActionCard: View {
             Spacer()
             
             if isLoading {
-                ProgressView()
+                ProgressView().frame(width: 16, height: 16)
                     .scaleEffect(0.8)
             } else {
                 Button(action: action) {

@@ -3,10 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01AABB11223344556677AABB /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AABB11223344556677AA01 /* SettingsManager.swift */; };
+		01AABB11223344556677AACC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AABB11223344556677AA02 /* SettingsView.swift */; };
+		01AABB11223344556677AADD /* MenuBarPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AABB11223344556677AA03 /* MenuBarPanelView.swift */; };
+		01AABB11223344556677AAEE /* MenuBarMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AABB11223344556677AA04 /* MenuBarMenuView.swift */; };
 		05EECD1B118E3B4BF3E782FF /* HomebrewServicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8CCAAE7221B79B634126A4 /* HomebrewServicesManager.swift */; };
 		0BB1CAC01176CFDFF0BD33A6 /* ModernCasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1D85D7699466F48D0CB6BD /* ModernCasksView.swift */; };
 		0D8ABF8325D48C1991485581 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2219CA66C98ED7B24F71F7 /* DesignSystem.swift */; };
@@ -39,6 +43,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01AABB11223344556677AA01 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
+		01AABB11223344556677AA02 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		01AABB11223344556677AA03 /* MenuBarPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarPanelView.swift; sourceTree = "<group>"; };
+		01AABB11223344556677AA04 /* MenuBarMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarMenuView.swift; sourceTree = "<group>"; };
 		0296F2987310D440A399634E /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		0598FD372D46ABAE82FE9611 /* BrewfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewfileManager.swift; sourceTree = "<group>"; };
 		16CA78E0288553695F3D61BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -95,16 +103,27 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		01AABB11223344556677MENU /* MenuBar */ = {
+			isa = PBXGroup;
+			children = (
+				01AABB11223344556677AA03 /* MenuBarPanelView.swift */,
+				01AABB11223344556677AA04 /* MenuBarMenuView.swift */,
+			);
+			path = MenuBar;
+			sourceTree = "<group>";
+		};
 		46E23DE1BED8D7F9E78F1136 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				0296F2987310D440A399634E /* DashboardView.swift */,
+				01AABB11223344556677AA02 /* SettingsView.swift */,
 				7A0F5A78FD8C980BAEAC51A4 /* MaintenanceView.swift */,
 				AD1D85D7699466F48D0CB6BD /* ModernCasksView.swift */,
 				7C5D3D1682A0BDB621129D61 /* ModernPackagesView.swift */,
 				3941C278280158ABA4C8F8BE /* ModernServicesView.swift */,
 				16CDCCF0E54015630A518D3A /* ModernTapsView.swift */,
 				B190146BBF33F5490E6EC956 /* Components */,
+				01AABB11223344556677MENU /* MenuBar */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -164,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				1DCD8566C73EEA9A8C207B84 /* AppConfig.swift */,
+				01AABB11223344556677AA01 /* SettingsManager.swift */,
 				0598FD372D46ABAE82FE9611 /* BrewfileManager.swift */,
 				61DFCB6F5098681C116FD01D /* HomebrewInstaller.swift */,
 				BCE21C76ED718864EDEFC2BF /* HomebrewManager.swift */,
@@ -208,7 +228,6 @@
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					6E95906D847FF8F9138005E2 = {
-						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -224,7 +243,6 @@
 			);
 			mainGroup = 7A9FC7F6FB8C796C5B6636A1;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -277,6 +295,10 @@
 				7E92573510F90DC168C240F1 /* StatCard.swift in Sources */,
 				E23A9926BA32918E020CB87F /* ViewModifiers.swift in Sources */,
 				40E4F536C359701D736317AD /* xBrewApp.swift in Sources */,
+				01AABB11223344556677AABB /* SettingsManager.swift in Sources */,
+				01AABB11223344556677AACC /* SettingsView.swift in Sources */,
+				01AABB11223344556677AADD /* MenuBarPanelView.swift in Sources */,
+				01AABB11223344556677AAEE /* MenuBarMenuView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,7 +325,7 @@
 				CODE_SIGN_ENTITLEMENTS = xBrew/Resources/xBrew.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = M6C7NX9MUZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -386,7 +408,7 @@
 				CODE_SIGN_ENTITLEMENTS = xBrew/Resources/xBrew.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = M6C7NX9MUZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;

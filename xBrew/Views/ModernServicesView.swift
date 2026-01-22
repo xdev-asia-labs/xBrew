@@ -143,7 +143,7 @@ struct ServiceCard: View {
             if isHovered || isToggling {
                 HStack(spacing: DesignSystem.Spacing.xs) {
                     if isToggling {
-                        ProgressView()
+                        ProgressView().frame(width: 16, height: 16)
                             .scaleEffect(0.7)
                             .frame(width: 60)
                     } else {

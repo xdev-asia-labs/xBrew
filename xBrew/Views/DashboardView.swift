@@ -218,7 +218,7 @@ struct QuickActionButton: View {
         Button(action: action) {
             VStack(spacing: DesignSystem.Spacing.xs) {
                 if isLoading {
-                    ProgressView()
+                    ProgressView().frame(width: 16, height: 16)
                         .scaleEffect(0.8)
                 } else {
                     Image(systemName: icon)

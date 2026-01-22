@@ -1,14 +1,15 @@
 import Foundation
 import Combine
+import UserNotifications
 
 /// Homebrew Package Manager - Core Service
 /// Manages Homebrew packages, casks, taps and updates
 @MainActor
 final class HomebrewManager: ObservableObject {
     static let shared = HomebrewManager()
-    
+
     // MARK: - Published Properties
-    
+
     @Published var isBrewInstalled = false
     @Published var packages: [BrewPackage] = []
     @Published var casks: [BrewCask] = []
@@ -21,19 +22,92 @@ final class HomebrewManager: ObservableObject {
     @Published var brewVersion: String = ""
     @Published var upgradeProgress: [String: Double] = [:]
     @Published var orphanedPackages: [String] = []
-    
+
     // MARK: - Private Properties
-    
+
     private var packageCache: (packages: [BrewPackage], timestamp: Date)?
     private var caskCache: (casks: [BrewCask], timestamp: Date)?
-    private let cacheTimeout: TimeInterval = 300 // 5 minutes
+    private var cacheTimeout: TimeInterval { SettingsManager.shared.commandTimeout }
     private var searchIndex: [String: BrewPackage] = [:]
     private var caskSearchIndex: [String: BrewCask] = [:]
-    
+
+    // Background refresh
+    private var refreshTimer: Timer?
+    private var cancellables = Set<AnyCancellable>()
+
     // MARK: - Initialization
-    
+
     private init() {
         detectHomebrew()
+        setupBackgroundRefresh()
+        requestNotificationPermission()
+    }
+
+    deinit {
+        refreshTimer?.invalidate()
+    }
+
+    // MARK: - Background Refresh
+
+    private func setupBackgroundRefresh() {
+        // Setup initial timer based on current settings
+        let settings = SettingsManager.shared
+        updateRefreshTimer(enabled: settings.autoCheckUpdates, interval: settings.updateCheckIntervalRaw)
+    }
+
+    private func updateRefreshTimer(enabled: Bool, interval: TimeInterval) {
+        refreshTimer?.invalidate()
+        refreshTimer = nil
+
+        guard enabled, isBrewInstalled else { return }
+
+        refreshTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { [weak self] _ in
+            Task { @MainActor in
+                await self?.backgroundRefresh()
+            }
+        }
+    }
+
+    private func backgroundRefresh() async {
+        let previousOutdated = totalOutdated
+        await refreshOutdated()
+
+        // Notify if new outdated packages found
+        let settings = SettingsManager.shared
+        if settings.notifyOutdated && totalOutdated > previousOutdated {
+            let newCount = totalOutdated - previousOutdated
+            if newCount >= settings.outdatedThreshold {
+                sendNotification(
+                    title: "Updates Available",
+                    body: "\(newCount) new package update\(newCount > 1 ? "s" : "") available"
+                )
+            }
+        }
+    }
+
+    // MARK: - Notifications
+
+    private func requestNotificationPermission() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
+            if granted {
+                print("✅ Notification permission granted")
+            }
+        }
+    }
+
+    private func sendNotification(title: String, body: String) {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = body
+        content.sound = .default
+
+        let request = UNNotificationRequest(
+            identifier: UUID().uuidString,
+            content: content,
+            trigger: nil
+        )
+
+        UNUserNotificationCenter.current().add(request)
     }
     
     private func detectHomebrew() {
@@ -181,25 +255,44 @@ final class HomebrewManager: ObservableObject {
     }
     
     // MARK: - Maintenance
-    
+
     func updateBrew() async -> String {
         isUpdating = true
-        defer { isUpdating = false }
+        defer {
+            isUpdating = false
+            notifyIfEnabled(title: "Update Complete", body: "Homebrew has been updated")
+        }
         return await runBrewCommand(["update"]) ?? "Update failed"
     }
-    
+
+    func upgradeAll() async -> String {
+        isUpdating = true
+        defer {
+            isUpdating = false
+            Task { await refreshOutdated() }
+            notifyIfEnabled(title: "Upgrade Complete", body: "All packages have been upgraded")
+        }
+        return await runBrewCommand(["upgrade"]) ?? "Upgrade failed"
+    }
+
     func cleanup() async -> String {
         isUpdating = true
         defer { isUpdating = false }
         return await runBrewCommand(["cleanup", "-s"]) ?? "Cleanup failed"
     }
-    
+
     func doctor() async -> String {
         return await runBrewCommand(["doctor"]) ?? "Doctor check failed"
     }
-    
+
+    private func notifyIfEnabled(title: String, body: String) {
+        if SettingsManager.shared.notifyUpdateComplete {
+            sendNotification(title: title, body: body)
+        }
+    }
+
     // MARK: - Stats
-    
+
     var totalPackages: Int { packages.count + casks.count }
     var totalOutdated: Int { outdatedPackages.count + outdatedCasks.count }
 }

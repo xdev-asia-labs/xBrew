@@ -54,7 +54,7 @@ struct ModernCasksView: View {
             // Content
             if brew.isLoading {
                 VStack(spacing: DesignSystem.Spacing.md) {
-                    ProgressView()
+                    ProgressView().frame(width: 16, height: 16)
                     Text("Loading casks...")
                         .foregroundColor(.secondary)
                 }
