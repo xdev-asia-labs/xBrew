@@ -28,5 +28,19 @@
 	<string>NSApplication</string>
 	<key>NSMainStoryboardFile</key>
 	<string></string>
+	<key>CFBundleDisplayName</key>
+	<string>xBrew</string>
+	<key>NSHumanReadableDescription</key>
+	<string>Modern Homebrew Package Manager for macOS. Beautiful, fast, and intuitive GUI for managing your Homebrew packages, casks, and taps.</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.utilities</string>
+	<key>NSSupportsAutomaticTermination</key>
+	<true/>
+	<key>NSSupportsSuddenTermination</key>
+	<true/>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>xBrew needs to execute Homebrew commands to manage packages, casks, and taps on your system.</string>
+	<key>NSAppleScriptEnabled</key>
+	<false/>
 </dict>
 </plist>
