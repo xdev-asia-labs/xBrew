@@ -1,0 +1,32 @@
+# Snapfile for xBrew macOS App Store Screenshots
+# Documentation: https://docs.fastlane.tools/actions/snapshot/
+
+# Xcode project and scheme
+scheme("xBrewUITests")
+project("./xBrew.xcodeproj")
+
+# Output directory for screenshots
+output_directory("./screenshots")
+
+# Clean up before running
+clear_previous_screenshots(true)
+
+# Force macOS platform, auto-register device, and enable provisioning updates
+xcargs("-destination 'platform=macOS' -allowProvisioningUpdates -allowProvisioningDeviceRegistration")
+
+# Languages to capture
+languages([
+  "en-US"
+])
+
+# Additional launch arguments
+launch_arguments(["-screenshot-mode"])
+
+# Stop on first error
+stop_after_first_error(true)
+
+# Skip open summary
+skip_open_summary(true)
+
+# Don't use concurrent simulators
+concurrent_simulators(false)

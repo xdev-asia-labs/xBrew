@@ -32,9 +32,7 @@ struct ContentView: View {
                 }
                 .navigationSplitViewStyle(.balanced)
                 .sheet(isPresented: $showingInstallSheet) {
-                    // TODO: Create InstallSheet component
-                    Text("Install Package")
-                        .padding()
+                    InstallPackageSheet()
                 }
                 .fileImporter(
                     isPresented: $showingBrewfileImport,
@@ -119,6 +117,9 @@ struct ContentView: View {
                 
             case .maintenance:
                 MaintenanceView()
+                
+            case .support:
+                SupportView()
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -367,6 +368,8 @@ struct ContentView: View {
         case .maintenance:
             let count = brew.totalOutdated
             return count > 0 ? "\(count)" : nil
+        case .support:
+            return nil
         }
     }
     

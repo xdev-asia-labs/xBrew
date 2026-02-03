@@ -30,7 +30,7 @@ targets:
       CODE_SIGN_STYLE: Automatic
       CODE_SIGN_ENTITLEMENTS: xBrew/Resources/xBrew.entitlements
       COMBINE_HIDPI_IMAGES: YES
-      DEVELOPMENT_TEAM: ""
+      DEVELOPMENT_TEAM: "Q9YW4A845M"
       ENABLE_HARDENED_RUNTIME: YES
       ENABLE_PREVIEWS: YES
       GENERATE_INFOPLIST_FILE: NO
@@ -38,3 +38,18 @@ targets:
       MACOSX_DEPLOYMENT_TARGET: "13.0"
       SWIFT_EMIT_LOC_STRINGS: YES
       SWIFT_VERSION: "5.0"
+
+  xBrewUITests:
+    type: bundle.ui-testing
+    platform: macOS
+    sources:
+      - path: xBrewUITests
+    dependencies:
+      - target: xBrew
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: asia.xdev.xBrewUITests
+      CODE_SIGN_STYLE: Automatic
+      DEVELOPMENT_TEAM: "Q9YW4A845M"
+      SWIFT_VERSION: "5.0"
+      GENERATE_INFOPLIST_FILE: YES
+      MACOSX_DEPLOYMENT_TARGET: "13.0"

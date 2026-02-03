@@ -1,0 +1,27 @@
+# Fastlane Fastfile for xBrew
+# Documentation: https://docs.fastlane.tools
+
+default_platform(:mac)
+
+platform :mac do
+  desc "Capture App Store screenshots"
+  lane :screenshots do
+    snapshot
+  end
+  
+  desc "Build for App Store"
+  lane :build do
+    build_mac_app(
+      scheme: "xBrew",
+      clean: true,
+      output_directory: "./build",
+      export_method: "app-store"
+    )
+  end
+  
+  desc "Upload to TestFlight"
+  lane :beta do
+    build
+    upload_to_testflight
+  end
+end
