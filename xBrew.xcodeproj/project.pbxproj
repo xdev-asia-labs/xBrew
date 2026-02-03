@@ -31,6 +31,7 @@
 		9AEEC04312A24A623299F654 /* BrewfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598FD372D46ABAE82FE9611 /* BrewfileManager.swift */; };
 		9CA9E0E97077A721B48045CF /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D544B79A536104144C81B203 /* SnapshotHelper.swift */; };
 		A6732C217B6B13BA39A8A867 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0296F2987310D440A399634E /* DashboardView.swift */; };
+		ABC12345INSTALL0PACKAGE1 /* InstallPackageSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF67890INSTALL0PACKAGE2 /* InstallPackageSheet.swift */; };
 		AF5F20E1E6EA1A62C61EF9C6 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2D9C08928271D6870C5DEE /* LocalizationManager.swift */; };
 		B268DF515D6F07C0E3463AD7 /* NavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D92D1124F12692966C0BE4C /* NavigationState.swift */; };
 		D2DE409A6EEB470C3C2EEE3B /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5C019FB1298820A949FC1 /* SearchBar.swift */; };
@@ -42,7 +43,6 @@
 		F14B59AF088919879EDCC572 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D73574CD67A7C36546BADE /* ContentView.swift */; };
 		F205424F100AA430C203E2AE /* HomebrewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E56518471697710A52E7B87 /* HomebrewModels.swift */; };
 		FF140ACC5A79B3AE8BD80298 /* ModernPackagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5D3D1682A0BDB621129D61 /* ModernPackagesView.swift */; };
-		ABC12345INSTALL0PACKAGE1 /* InstallPackageSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF67890INSTALL0PACKAGE2 /* InstallPackageSheet.swift */; };
 		SUPPORT1234567890ABCDE1 /* SupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SUPPORT1234567890ABCDE2 /* SupportView.swift */; };
 /* End PBXBuildFile section */
 
@@ -96,8 +96,8 @@
 		C3A12800BCC005F599E2BDAF /* xBrew.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = xBrew.entitlements; sourceTree = "<group>"; };
 		C47E86779EFEEB1B9BF41DA1 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		D544B79A536104144C81B203 /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
-		E31A61AC50100C96E6536A7E /* xBrewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xBrewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEF67890INSTALL0PACKAGE2 /* InstallPackageSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallPackageSheet.swift; sourceTree = "<group>"; };
+		E31A61AC50100C96E6536A7E /* xBrewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xBrewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		SUPPORT1234567890ABCDE2 /* SupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -399,6 +399,7 @@
 				CODE_SIGN_ENTITLEMENTS = xBrew/Resources/xBrew.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = M6C7NX9MUZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -503,6 +504,7 @@
 				CODE_SIGN_ENTITLEMENTS = xBrew/Resources/xBrew.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = M6C7NX9MUZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;

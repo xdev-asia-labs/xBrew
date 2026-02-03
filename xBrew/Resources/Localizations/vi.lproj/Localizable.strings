@@ -67,3 +67,66 @@
 "common.save" = "Lưu";
 "common.settings" = "Cài đặt";
 "common.language" = "Ngôn ngữ";
+
+/* Settings - Tabs */
+"settings.general" = "Chung";
+"settings.homebrew" = "Homebrew";
+"settings.notifications" = "Thông báo";
+"settings.about" = "Giới thiệu";
+
+/* Settings - General */
+"settings.app_settings" = "Cài đặt ứng dụng";
+"settings.language" = "Ngôn ngữ";
+"settings.launch_at_login" = "Khởi động cùng hệ thống";
+"settings.launch_at_login_help" = "Tự động mở xBrew khi đăng nhập";
+
+/* Settings - Menu Bar */
+"settings.menu_bar" = "Thanh menu";
+"settings.show_menu_bar_icon" = "Hiện icon trên thanh menu";
+"settings.show_menu_bar_icon_help" = "Hiện icon xBrew trên thanh menu";
+"settings.menu_bar_style" = "Kiểu thanh menu";
+"settings.show_outdated_badge" = "Hiện số gói cần cập nhật";
+"settings.show_outdated_badge_help" = "Hiện số gói cần cập nhật trên icon";
+
+/* Settings - Appearance */
+"settings.appearance" = "Giao diện";
+"settings.enable_animations" = "Bật hiệu ứng";
+"settings.compact_mode" = "Chế độ thu gọn";
+"settings.compact_mode_help" = "Dùng giao diện thu gọn cho danh sách gói";
+
+/* Settings - Homebrew Updates */
+"settings.updates" = "Cập nhật";
+"settings.auto_check_updates" = "Tự động kiểm tra cập nhật";
+"settings.auto_check_updates_help" = "Định kỳ kiểm tra các gói cần cập nhật";
+"settings.check_interval" = "Khoảng thời gian kiểm tra";
+"settings.auto_cleanup" = "Tự động dọn dẹp sau cập nhật";
+"settings.auto_cleanup_help" = "Tự động dọn dẹp sau khi cập nhật gói";
+
+/* Settings - Performance */
+"settings.performance" = "Hiệu suất";
+"settings.command_timeout" = "Thời gian chờ lệnh";
+"settings.disable_auto_update" = "Tắt Auto-Update Homebrew";
+"settings.disable_auto_update_help" = "Ngăn Homebrew tự động cập nhật trước khi chạy lệnh";
+"settings.disable_analytics" = "Tắt Analytics Homebrew";
+"settings.disable_analytics_help" = "Không gửi dữ liệu phân tích ẩn danh";
+
+/* Settings - Information */
+"settings.information" = "Thông tin";
+"settings.homebrew_version" = "Phiên bản Homebrew";
+"settings.installation_path" = "Đường dẫn cài đặt";
+
+/* Settings - Notifications */
+"settings.outdated_packages" = "Gói cần cập nhật";
+"settings.outdated_packages_help" = "Thông báo khi có gói cần cập nhật";
+"settings.minimum_to_notify" = "Số lượng tối thiểu để thông báo";
+"settings.update_complete" = "Cập nhật hoàn tất";
+"settings.update_complete_help" = "Thông báo khi cập nhật gói xong";
+"settings.service_changes" = "Thay đổi dịch vụ";
+"settings.service_changes_help" = "Thông báo khi dịch vụ bắt đầu hoặc dừng";
+"settings.system_settings" = "Cài đặt hệ thống";
+"settings.open_system_notifications" = "Mở cài đặt thông báo hệ thống";
+
+/* Settings - About */
+"settings.version" = "Phiên bản";
+"settings.copyright" = "© 2024 xDev.asia. Bảo lưu mọi quyền.";
+"settings.reset_all" = "Đặt lại tất cả cài đặt";

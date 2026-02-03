@@ -67,3 +67,66 @@
 "common.save" = "Save";
 "common.settings" = "Settings";
 "common.language" = "Language";
+
+/* Settings - Tabs */
+"settings.general" = "General";
+"settings.homebrew" = "Homebrew";
+"settings.notifications" = "Notifications";
+"settings.about" = "About";
+
+/* Settings - General */
+"settings.app_settings" = "App Settings";
+"settings.language" = "Language";
+"settings.launch_at_login" = "Launch at Login";
+"settings.launch_at_login_help" = "Automatically start xBrew when you log in";
+
+/* Settings - Menu Bar */
+"settings.menu_bar" = "Menu Bar";
+"settings.show_menu_bar_icon" = "Show Menu Bar Icon";
+"settings.show_menu_bar_icon_help" = "Show xBrew icon in the menu bar";
+"settings.menu_bar_style" = "Menu Bar Style";
+"settings.show_outdated_badge" = "Show Outdated Badge";
+"settings.show_outdated_badge_help" = "Show number of outdated packages on menu bar icon";
+
+/* Settings - Appearance */
+"settings.appearance" = "Appearance";
+"settings.enable_animations" = "Enable Animations";
+"settings.compact_mode" = "Compact Mode";
+"settings.compact_mode_help" = "Use compact layout for package lists";
+
+/* Settings - Homebrew Updates */
+"settings.updates" = "Updates";
+"settings.auto_check_updates" = "Auto Check for Updates";
+"settings.auto_check_updates_help" = "Periodically check for outdated packages";
+"settings.check_interval" = "Check Interval";
+"settings.auto_cleanup" = "Auto Cleanup After Updates";
+"settings.auto_cleanup_help" = "Automatically run cleanup after updating packages";
+
+/* Settings - Performance */
+"settings.performance" = "Performance";
+"settings.command_timeout" = "Command Timeout";
+"settings.disable_auto_update" = "Disable Homebrew Auto-Update";
+"settings.disable_auto_update_help" = "Prevent Homebrew from auto-updating before commands";
+"settings.disable_analytics" = "Disable Homebrew Analytics";
+"settings.disable_analytics_help" = "Opt out of Homebrew's anonymous analytics";
+
+/* Settings - Information */
+"settings.information" = "Information";
+"settings.homebrew_version" = "Homebrew Version";
+"settings.installation_path" = "Installation Path";
+
+/* Settings - Notifications */
+"settings.outdated_packages" = "Outdated Packages";
+"settings.outdated_packages_help" = "Notify when packages have updates available";
+"settings.minimum_to_notify" = "Minimum to notify";
+"settings.update_complete" = "Update Complete";
+"settings.update_complete_help" = "Notify when package updates finish";
+"settings.service_changes" = "Service Changes";
+"settings.service_changes_help" = "Notify when services start or stop";
+"settings.system_settings" = "System Settings";
+"settings.open_system_notifications" = "Open System Notifications Settings";
+
+/* Settings - About */
+"settings.version" = "Version";
+"settings.copyright" = "© 2024 xDev.asia. All rights reserved.";
+"settings.reset_all" = "Reset All Settings";

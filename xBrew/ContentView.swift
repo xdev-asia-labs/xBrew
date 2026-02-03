@@ -7,6 +7,7 @@ struct ContentView: View {
     @StateObject private var navigationState = NavigationState()
     @StateObject private var installer = HomebrewInstaller()
     @StateObject private var settings = SettingsManager.shared
+    @StateObject private var localization = LocalizationManager.shared
 
     @State private var showingInstallSheet = false
     @State private var showingBrewfileImport = false
@@ -24,6 +25,7 @@ struct ContentView: View {
                 } detail: {
                     // Main Content
                     mainContent
+                        .id(localization.currentLanguage) // Force refresh when language changes
                         .toolbar {
                             ToolbarItemGroup(placement: .automatic) {
                                 toolbarButtons
@@ -92,6 +94,7 @@ struct ContentView: View {
         .navigationSubtitle(brew.brewVersion)
         .frame(minWidth: DesignSystem.Layout.sidebarWidth)
         .background(DesignSystem.Colors.sidebarBackground)
+        .id(localization.currentLanguage) // Force refresh when language changes
     }
     
     // MARK: - Main Content

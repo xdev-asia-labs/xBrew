@@ -8,18 +8,12 @@ final class LocalizationManager: ObservableObject {
     
     @Published var currentLanguage: Language {
         didSet {
-            // Save immediately (synchronous is OK for UserDefaults)
+            // Save immediately
             UserDefaults.standard.set(currentLanguage.rawValue, forKey: "selectedLanguage")
-            
-            // Update bundle in next run loop to avoid SwiftUI warnings
-            Task { @MainActor in
-                self.updateBundle()
-                // Force UI refresh
-                self.objectWillChange.send()
-            }
+            // Update bundle
+            updateBundle()
         }
     }
-    
     
     private var bundle: Bundle = .main
     
@@ -56,15 +50,15 @@ final class LocalizationManager: ObservableObject {
     
     private func updateBundle() {
         if let path = Bundle.main.path(forResource: currentLanguage.rawValue, ofType: "lproj"),
-           let bundle = Bundle(path: path) {
-            self.bundle = bundle
+           let newBundle = Bundle(path: path) {
+            self.bundle = newBundle
         } else {
             self.bundle = .main
         }
     }
     
-    nonisolated func localize(_ key: String) -> String {
-        return NSLocalizedString(key, bundle: bundle, comment: "")
+    func localize(_ key: String) -> String {
+        return bundle.localizedString(forKey: key, value: nil, table: nil)
     }
 }
 

@@ -10,25 +10,26 @@ struct SettingsView: View {
         TabView {
             GeneralSettingsTab()
                 .tabItem {
-                    Label("General", systemImage: "gear")
+                    Label("settings.general".localized, systemImage: "gear")
                 }
 
             HomebrewSettingsTab()
                 .tabItem {
-                    Label("Homebrew", systemImage: "terminal")
+                    Label("settings.homebrew".localized, systemImage: "terminal")
                 }
 
             NotificationSettingsTab()
                 .tabItem {
-                    Label("Notifications", systemImage: "bell")
+                    Label("settings.notifications".localized, systemImage: "bell")
                 }
 
             AboutTab()
                 .tabItem {
-                    Label("About", systemImage: "info.circle")
+                    Label("settings.about".localized, systemImage: "info.circle")
                 }
         }
         .frame(width: 500, height: 400)
+        .id(localization.currentLanguage) // Force refresh when language changes
     }
 }
 
@@ -42,7 +43,7 @@ struct GeneralSettingsTab: View {
         Form {
             Section {
                 // Language
-                Picker("Language", selection: $localization.currentLanguage) {
+                Picker("settings.language".localized, selection: $localization.currentLanguage) {
                     ForEach(LocalizationManager.Language.allCases, id: \.self) { lang in
                         HStack {
                             Text(lang.flag)
@@ -54,19 +55,19 @@ struct GeneralSettingsTab: View {
                 .pickerStyle(.menu)
 
                 // Launch at Login
-                Toggle("Launch at Login", isOn: $settings.launchAtLogin)
-                    .help("Automatically start xBrew when you log in")
+                Toggle("settings.launch_at_login".localized, isOn: $settings.launchAtLogin)
+                    .help("settings.launch_at_login_help".localized)
             } header: {
-                Label("App Settings", systemImage: "app.badge")
+                Label("settings.app_settings".localized, systemImage: "app.badge")
             }
 
             Section {
                 // Show Menu Bar Icon
-                Toggle("Show Menu Bar Icon", isOn: $settings.showMenuBarIcon)
-                    .help("Show xBrew icon in the menu bar")
+                Toggle("settings.show_menu_bar_icon".localized, isOn: $settings.showMenuBarIcon)
+                    .help("settings.show_menu_bar_icon_help".localized)
 
                 // Menu Bar Style
-                Picker("Menu Bar Style", selection: Binding(
+                Picker("settings.menu_bar_style".localized, selection: Binding(
                     get: { settings.menuBarStyle },
                     set: { settings.menuBarStyle = $0 }
                 )) {
@@ -82,22 +83,22 @@ struct GeneralSettingsTab: View {
                 .disabled(!settings.showMenuBarIcon)
 
                 // Show Badge
-                Toggle("Show Outdated Badge", isOn: $settings.showOutdatedBadge)
-                    .help("Show number of outdated packages on menu bar icon")
+                Toggle("settings.show_outdated_badge".localized, isOn: $settings.showOutdatedBadge)
+                    .help("settings.show_outdated_badge_help".localized)
                     .disabled(!settings.showMenuBarIcon)
             } header: {
-                Label("Menu Bar", systemImage: "menubar.rectangle")
+                Label("settings.menu_bar".localized, systemImage: "menubar.rectangle")
             }
 
             Section {
                 // Enable Animations
-                Toggle("Enable Animations", isOn: $settings.enableAnimations)
+                Toggle("settings.enable_animations".localized, isOn: $settings.enableAnimations)
 
                 // Compact Mode
-                Toggle("Compact Mode", isOn: $settings.compactMode)
-                    .help("Use compact layout for package lists")
+                Toggle("settings.compact_mode".localized, isOn: $settings.compactMode)
+                    .help("settings.compact_mode_help".localized)
             } header: {
-                Label("Appearance", systemImage: "paintbrush")
+                Label("settings.appearance".localized, systemImage: "paintbrush")
             }
         }
         .formStyle(.grouped)
@@ -110,16 +111,17 @@ struct GeneralSettingsTab: View {
 struct HomebrewSettingsTab: View {
     @StateObject private var settings = SettingsManager.shared
     @StateObject private var brew = HomebrewManager.shared
+    @StateObject private var localization = LocalizationManager.shared
 
     var body: some View {
         Form {
             Section {
                 // Auto Check Updates
-                Toggle("Auto Check for Updates", isOn: $settings.autoCheckUpdates)
-                    .help("Periodically check for outdated packages")
+                Toggle("settings.auto_check_updates".localized, isOn: $settings.autoCheckUpdates)
+                    .help("settings.auto_check_updates_help".localized)
 
                 // Update Interval
-                Picker("Check Interval", selection: Binding(
+                Picker("settings.check_interval".localized, selection: Binding(
                     get: { settings.updateCheckInterval },
                     set: { settings.updateCheckInterval = $0 }
                 )) {
@@ -131,16 +133,16 @@ struct HomebrewSettingsTab: View {
                 .disabled(!settings.autoCheckUpdates)
 
                 // Auto Cleanup
-                Toggle("Auto Cleanup After Updates", isOn: $settings.autoCleanup)
-                    .help("Automatically run cleanup after updating packages")
+                Toggle("settings.auto_cleanup".localized, isOn: $settings.autoCleanup)
+                    .help("settings.auto_cleanup_help".localized)
             } header: {
-                Label("Updates", systemImage: "arrow.clockwise")
+                Label("settings.updates".localized, systemImage: "arrow.clockwise")
             }
 
             Section {
                 // Command Timeout
                 HStack {
-                    Text("Command Timeout")
+                    Text("settings.command_timeout".localized)
                     Spacer()
                     Picker("", selection: $settings.commandTimeout) {
                         Text("1 minute").tag(60.0)
@@ -154,26 +156,26 @@ struct HomebrewSettingsTab: View {
                 }
 
                 // Disable Auto Update
-                Toggle("Disable Homebrew Auto-Update", isOn: $settings.disableBrewAutoUpdate)
-                    .help("Prevent Homebrew from auto-updating before commands")
+                Toggle("settings.disable_auto_update".localized, isOn: $settings.disableBrewAutoUpdate)
+                    .help("settings.disable_auto_update_help".localized)
 
                 // Disable Analytics
-                Toggle("Disable Homebrew Analytics", isOn: $settings.disableBrewAnalytics)
-                    .help("Opt out of Homebrew's anonymous analytics")
+                Toggle("settings.disable_analytics".localized, isOn: $settings.disableBrewAnalytics)
+                    .help("settings.disable_analytics_help".localized)
             } header: {
-                Label("Performance", systemImage: "speedometer")
+                Label("settings.performance".localized, systemImage: "speedometer")
             }
 
             Section {
                 // Homebrew Version
-                LabeledContent("Homebrew Version", value: brew.brewVersion)
+                LabeledContent("settings.homebrew_version".localized, value: brew.brewVersion)
 
                 // Homebrew Path
                 if let path = getBrewPath() {
-                    LabeledContent("Installation Path", value: path)
+                    LabeledContent("settings.installation_path".localized, value: path)
                 }
             } header: {
-                Label("Information", systemImage: "info.circle")
+                Label("settings.information".localized, systemImage: "info.circle")
             }
         }
         .formStyle(.grouped)
@@ -194,19 +196,20 @@ struct HomebrewSettingsTab: View {
 
 struct NotificationSettingsTab: View {
     @StateObject private var settings = SettingsManager.shared
+    @StateObject private var localization = LocalizationManager.shared
 
     var body: some View {
         Form {
             Section {
                 // Notify Outdated
-                Toggle("Outdated Packages", isOn: $settings.notifyOutdated)
-                    .help("Notify when packages have updates available")
+                Toggle("settings.outdated_packages".localized, isOn: $settings.notifyOutdated)
+                    .help("settings.outdated_packages_help".localized)
 
                 // Outdated Threshold
                 if settings.notifyOutdated {
                     Stepper(value: $settings.outdatedThreshold, in: 1...20) {
                         HStack {
-                            Text("Minimum to notify")
+                            Text("settings.minimum_to_notify".localized)
                             Spacer()
                             Text("\(settings.outdatedThreshold) package\(settings.outdatedThreshold > 1 ? "s" : "")")
                                 .foregroundColor(.secondary)
@@ -215,25 +218,25 @@ struct NotificationSettingsTab: View {
                 }
 
                 // Notify Update Complete
-                Toggle("Update Complete", isOn: $settings.notifyUpdateComplete)
-                    .help("Notify when package updates finish")
+                Toggle("settings.update_complete".localized, isOn: $settings.notifyUpdateComplete)
+                    .help("settings.update_complete_help".localized)
 
                 // Notify Service Changes
-                Toggle("Service Changes", isOn: $settings.notifyServiceChanges)
-                    .help("Notify when services start or stop")
+                Toggle("settings.service_changes".localized, isOn: $settings.notifyServiceChanges)
+                    .help("settings.service_changes_help".localized)
             } header: {
-                Label("Notifications", systemImage: "bell.badge")
+                Label("settings.notifications".localized, systemImage: "bell.badge")
             }
 
             Section {
-                Button("Open System Notifications Settings") {
+                Button("settings.open_system_notifications".localized) {
                     if let url = URL(string: "x-apple.systempreferences:com.apple.preference.notifications") {
                         NSWorkspace.shared.open(url)
                     }
                 }
                 .buttonStyle(.link)
             } header: {
-                Label("System Settings", systemImage: "gearshape.2")
+                Label("settings.system_settings".localized, systemImage: "gearshape.2")
             }
         }
         .formStyle(.grouped)
@@ -245,6 +248,7 @@ struct NotificationSettingsTab: View {
 
 struct AboutTab: View {
     @StateObject private var brew = HomebrewManager.shared
+    @StateObject private var localization = LocalizationManager.shared
 
     var body: some View {
         VStack(spacing: DesignSystem.Spacing.lg) {
@@ -260,7 +264,7 @@ struct AboutTab: View {
                 .font(.system(size: 28, weight: .bold))
 
             // Version
-            Text("Version \(appVersion)")
+            Text("\("settings.version".localized) \(appVersion)")
                 .font(.system(size: 14))
                 .foregroundColor(.secondary)
 
@@ -295,12 +299,12 @@ struct AboutTab: View {
             Spacer()
 
             // Copyright
-            Text("© 2024 xDev.asia. All rights reserved.")
+            Text("settings.copyright".localized)
                 .font(.system(size: 11))
                 .foregroundColor(.secondary)
 
             // Reset Button
-            Button("Reset All Settings") {
+            Button("settings.reset_all".localized) {
                 SettingsManager.shared.resetToDefaults()
             }
             .buttonStyle(.link)
