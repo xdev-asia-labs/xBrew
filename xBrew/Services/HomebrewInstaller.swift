@@ -1,101 +1,51 @@
 import SwiftUI
 import Foundation
+import AppKit
 
-/// Homebrew Installer - Runs installation with embedded terminal view
+/// Homebrew Installer - Provides installation guidance for sandboxed App Store version
+/// Note: Direct installation is not possible in sandboxed apps, so we guide users through manual installation
 @MainActor
 final class HomebrewInstaller: ObservableObject {
-    @Published var isInstalling = false
-    @Published var installOutput = ""
     @Published var showInstructions = false
+    @Published var commandCopied = false
     
-    func installHomebrew() async -> Bool {
-        isInstalling = true
-        installOutput = "🍺 Starting Homebrew installation...\n\n"
-        
-        defer {
-            isInstalling = false
-        }
-        
-        // Use interactive process with pseudo-terminal
-        return await withCheckedContinuation { continuation in
-            DispatchQueue.global(qos: .userInitiated).async {
-                let task = Process()
-                task.executableURL = URL(fileURLWithPath: "/bin/bash")
-                task.arguments = ["-c", "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""]
-                
-                // Set up environment
-                var env = ProcessInfo.processInfo.environment
-                env["NONINTERACTIVE"] = "0" // Allow interactive mode
-                task.environment = env
-                
-                let pipe = Pipe()
-                let errorPipe = Pipe()
-                
-                task.standardOutput = pipe
-                task.standardError = errorPipe
-                
-                // Read output in real-time
-                pipe.fileHandleForReading.readabilityHandler = { handle in
-                    let data = handle.availableData
-                    if !data.isEmpty, let output = String(data: data, encoding: .utf8) {
-                        Task { @MainActor in
-                            self.installOutput += output
-                        }
-                    }
-                }
-                
-                errorPipe.fileHandleForReading.readabilityHandler = { handle in
-                    let data = handle.availableData
-                    if !data.isEmpty, let output = String(data: data, encoding: .utf8) {
-                        Task { @MainActor in
-                            self.installOutput += output
-                        }
-                    }
-                }
-                
-                do {
-                    try task.run()
-                    task.waitUntilExit()
-                    
-                    let success = task.terminationStatus == 0
-                    
-                    Task { @MainActor in
-                        if success {
-                            self.installOutput += "\n\n✅ Homebrew installed successfully!\n"
-                        } else {
-                            self.installOutput += "\n\n❌ Installation failed. Please check the output above.\n"
-                        }
-                    }
-                    
-                    continuation.resume(returning: success)
-                } catch {
-                    Task { @MainActor in
-                        self.installOutput += "\n\n❌ Error: \(error.localizedDescription)\n"
-                    }
-                    continuation.resume(returning: false)
-                }
-            }
-        }
-    }
+    /// The official Homebrew installation command
+    static let installCommand = "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
     
-    func installWithAppleScript() {
-        // Fallback: Open Terminal if needed
-        let script = """
-        tell application "Terminal"
-            activate
-            do script "/bin/bash -c \\"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\\"; echo ''; echo 'Close this window and restart xBrew'; read -p 'Press Enter...'"
-        end tell
-        """
-        
-        if let appleScript = NSAppleScript(source: script) {
-            var error: NSDictionary?
-            appleScript.executeAndReturnError(&error)
-        }
-    }
+    /// Homebrew website URL
+    static let homebrewWebsite = URL(string: "https://brew.sh")!
     
+    /// Installation steps for users
+    static let installationSteps: [(icon: String, title: String, description: String)] = [
+        ("1.circle.fill", "Copy the Install Command", "Click the button below to copy the Homebrew installation command to your clipboard."),
+        ("2.circle.fill", "Open Terminal", "Click 'Open Terminal' or find Terminal in Applications → Utilities."),
+        ("3.circle.fill", "Paste and Run", "Paste the command (⌘V) in Terminal and press Enter. Follow the on-screen prompts."),
+        ("4.circle.fill", "Restart xBrew", "Once installation completes, restart xBrew to start managing your packages.")
+    ]
+    
+    /// Copy the Homebrew installation command to clipboard
     func copyInstallCommand() {
-        let command = "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
         NSPasteboard.general.clearContents()
-        NSPasteboard.general.setString(command, forType: .string)
+        NSPasteboard.general.setString(Self.installCommand, forType: .string)
+        
+        // Show feedback
+        commandCopied = true
+        
+        // Reset after 2 seconds
+        Task {
+            try? await Task.sleep(nanoseconds: 2_000_000_000)
+            commandCopied = false
+        }
+    }
+    
+    /// Open Terminal.app using NSWorkspace (sandbox-safe)
+    func openTerminal() {
+        let terminalURL = URL(fileURLWithPath: "/System/Applications/Utilities/Terminal.app")
+        NSWorkspace.shared.open(terminalURL)
+    }
+    
+    /// Open Homebrew website
+    func openHomebrewWebsite() {
+        NSWorkspace.shared.open(Self.homebrewWebsite)
     }
 }

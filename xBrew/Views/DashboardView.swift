@@ -14,18 +14,22 @@ struct DashboardView: View {
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: DesignSystem.Spacing.lg) {
-                // Header
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Overview")
-                        .font(.system(size: DesignSystem.Typography.largeTitle, weight: DesignSystem.Typography.Weight.bold))
-                    
-                    Text("Homebrew package manager dashboard")
-                        .font(.system(size: DesignSystem.Typography.body))
-                        .foregroundColor(.secondary)
-                }
-                .padding(.horizontal, DesignSystem.Spacing.lg)
-                .padding(.top, DesignSystem.Spacing.lg)
+            if brew.isLoading && brew.packages.isEmpty {
+                // Skeleton loading state
+                DashboardSkeleton()
+            } else {
+                VStack(alignment: .leading, spacing: DesignSystem.Spacing.lg) {
+                    // Header
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Overview")
+                            .font(.system(size: DesignSystem.Typography.largeTitle, weight: DesignSystem.Typography.Weight.bold))
+                        
+                        Text("Homebrew package manager dashboard")
+                            .font(.system(size: DesignSystem.Typography.body))
+                            .foregroundColor(.secondary)
+                    }
+                    .padding(.horizontal, DesignSystem.Spacing.lg)
+                    .padding(.top, DesignSystem.Spacing.lg)
                 
                 // Quick Stats
                 LazyVGrid(columns: [
@@ -187,6 +191,7 @@ struct DashboardView: View {
                 }
                 .padding(.horizontal, DesignSystem.Spacing.lg)
                 .padding(.bottom, DesignSystem.Spacing.lg)
+                }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

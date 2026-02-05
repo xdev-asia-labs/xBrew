@@ -8,6 +8,7 @@ enum NavigationItem: String, CaseIterable, Identifiable {
     case casks = "Casks"
     case services = "Services"
     case taps = "Taps"
+    case security = "Security"
     case maintenance = "Maintenance"
     case support = "Support"
     
@@ -20,6 +21,7 @@ enum NavigationItem: String, CaseIterable, Identifiable {
         case .casks: return "app.fill"
         case .services: return "gearshape.2.fill"
         case .taps: return "arrow.triangle.branch"
+        case .security: return "shield.lefthalf.filled"
         case .maintenance: return "wrench.and.screwdriver.fill"
         case .support: return "heart.fill"
         }
@@ -32,6 +34,7 @@ enum NavigationItem: String, CaseIterable, Identifiable {
         case .casks: return "GUI applications"
         case .services: return "Background services"
         case .taps: return "Package repositories"
+        case .security: return "Vulnerability analysis"
         case .maintenance: return "Cleanup & health"
         case .support: return "Support the developer"
         }
@@ -44,6 +47,7 @@ enum NavigationItem: String, CaseIterable, Identifiable {
         case .casks: return L10n.casks.localized
         case .services: return L10n.services.localized
         case .taps: return "Taps"
+        case .security: return "Bảo mật"
         case .maintenance: return L10n.maintenance.localized
         case .support: return "Hỗ trợ"
         }

@@ -69,13 +69,10 @@ struct ModernPackagesView: View {
             Divider()
             
             // Content
-            if brew.isLoading {
-                VStack(spacing: DesignSystem.Spacing.md) {
-                    ProgressView().frame(width: 16, height: 16)
-                    Text("Loading packages...")
-                        .foregroundColor(.secondary)
+            if brew.isLoading && brew.packages.isEmpty {
+                ScrollView {
+                    PackageViewSkeleton()
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else if filteredPackages.isEmpty {
                 emptyState
             } else {

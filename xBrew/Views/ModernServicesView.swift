@@ -46,7 +46,11 @@ struct ModernServicesView: View {
             Divider()
             
             // Content
-            if filteredServices.isEmpty {
+            if servicesManager.isLoading && servicesManager.services.isEmpty {
+                ScrollView {
+                    ServicesViewSkeleton()
+                }
+            } else if filteredServices.isEmpty {
                 emptyState
             } else {
                 servicesList

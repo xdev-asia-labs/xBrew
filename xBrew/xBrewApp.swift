@@ -9,7 +9,7 @@ struct xBrewApp: App {
 
     var body: some Scene {
         // Main Window
-        WindowGroup {
+        WindowGroup(id: "main") {
             ContentView()
                 .environmentObject(localization)
                 .environmentObject(settings)

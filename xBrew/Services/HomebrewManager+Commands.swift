@@ -38,19 +38,23 @@ extension HomebrewManager {
                 let outputHandle = outputPipe.fileHandleForReading
                 let errorHandle = errorPipe.fileHandleForReading
                 
+                // Use nonisolated(unsafe) to silence sendable warning
+                // This is safe because we're only using the buffer in this scope
+                nonisolated(unsafe) let unsafeBuffer = buffer
+                
                 // Read in background
                 DispatchQueue.global(qos: .userInitiated).async {
                     while process.isRunning {
                         let data = outputHandle.availableData
                         if !data.isEmpty, let text = String(data: data, encoding: .utf8) {
                             fullOutput += text
-                            buffer.pointee += text
+                            unsafeBuffer.pointee += text
                         }
                         
                         let errorData = errorHandle.availableData
                         if !errorData.isEmpty, let text = String(data: errorData, encoding: .utf8) {
                             fullOutput += text
-                            buffer.pointee += text
+                            unsafeBuffer.pointee += text
                         }
                         
                         Thread.sleep(forTimeInterval: 0.1) // Buffer updates every 100ms

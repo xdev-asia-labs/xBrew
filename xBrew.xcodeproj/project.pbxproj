@@ -43,6 +43,9 @@
 		F14B59AF088919879EDCC572 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D73574CD67A7C36546BADE /* ContentView.swift */; };
 		F205424F100AA430C203E2AE /* HomebrewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E56518471697710A52E7B87 /* HomebrewModels.swift */; };
 		FF140ACC5A79B3AE8BD80298 /* ModernPackagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5D3D1682A0BDB621129D61 /* ModernPackagesView.swift */; };
+		SECURITY1234567890ABCD1 /* SecurityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = SECURITY1234567890ABCD2 /* SecurityManager.swift */; };
+		SECVIEW12345678901ABC1 /* SecurityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SECVIEW12345678901ABC2 /* SecurityView.swift */; };
+		SKELETON123456789ABCDE1 /* SkeletonLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = SKELETON123456789ABCDE2 /* SkeletonLoading.swift */; };
 		SUPPORT1234567890ABCDE1 /* SupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SUPPORT1234567890ABCDE2 /* SupportView.swift */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +101,9 @@
 		D544B79A536104144C81B203 /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		DEF67890INSTALL0PACKAGE2 /* InstallPackageSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallPackageSheet.swift; sourceTree = "<group>"; };
 		E31A61AC50100C96E6536A7E /* xBrewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xBrewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		SECURITY1234567890ABCD2 /* SecurityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityManager.swift; sourceTree = "<group>"; };
+		SECVIEW12345678901ABC2 /* SecurityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityView.swift; sourceTree = "<group>"; };
+		SKELETON123456789ABCDE2 /* SkeletonLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonLoading.swift; sourceTree = "<group>"; };
 		SUPPORT1234567890ABCDE2 /* SupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,6 +139,7 @@
 				16CDCCF0E54015630A518D3A /* ModernTapsView.swift */,
 				DEF67890INSTALL0PACKAGE2 /* InstallPackageSheet.swift */,
 				SUPPORT1234567890ABCDE2 /* SupportView.swift */,
+				SECVIEW12345678901ABC2 /* SecurityView.swift */,
 				A3A1F11655F1232624982615 /* SettingsView.swift */,
 				B190146BBF33F5490E6EC956 /* Components */,
 				76BE66E105C5AED573854BB7 /* MenuBar */,
@@ -197,6 +204,7 @@
 				38BF0319FB69F04793202102 /* PackageCard.swift */,
 				9C38100C83A21BF903DCDDCB /* PackageSheets.swift */,
 				53C5C019FB1298820A949FC1 /* SearchBar.swift */,
+				SKELETON123456789ABCDE2 /* SkeletonLoading.swift */,
 				5B084F735F71016A62E684A8 /* StatCard.swift */,
 				8CB20D71B4E5A1E834DA7B84 /* ViewModifiers.swift */,
 			);
@@ -224,6 +232,7 @@
 				1E56518471697710A52E7B87 /* HomebrewModels.swift */,
 				9A8CCAAE7221B79B634126A4 /* HomebrewServicesManager.swift */,
 				4C2D9C08928271D6870C5DEE /* LocalizationManager.swift */,
+				SECURITY1234567890ABCD2 /* SecurityManager.swift */,
 				C47E86779EFEEB1B9BF41DA1 /* SettingsManager.swift */,
 			);
 			path = Services;
@@ -275,7 +284,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					6E95906D847FF8F9138005E2 = {
 						ProvisioningStyle = Automatic;
@@ -364,6 +373,9 @@
 				SUPPORT1234567890ABCDE1 /* SupportView.swift in Sources */,
 				7E92573510F90DC168C240F1 /* StatCard.swift in Sources */,
 				E23A9926BA32918E020CB87F /* ViewModifiers.swift in Sources */,
+				SKELETON123456789ABCDE1 /* SkeletonLoading.swift in Sources */,
+				SECURITY1234567890ABCD1 /* SecurityManager.swift in Sources */,
+				SECVIEW12345678901ABC1 /* SecurityView.swift in Sources */,
 				40E4F536C359701D736317AD /* xBrewApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,8 +411,8 @@
 				CODE_SIGN_ENTITLEMENTS = xBrew/Resources/xBrew.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = M6C7NX9MUZ;
+				CURRENT_PROJECT_VERSION = 3;
+				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -421,6 +433,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CATEGORY = "public.app-category.utilities";
 				APP_PRICE_TIER = 0;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -452,9 +465,12 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = M6C7NX9MUZ;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -469,6 +485,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -481,7 +498,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = M6C7NX9MUZ;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -504,8 +521,8 @@
 				CODE_SIGN_ENTITLEMENTS = xBrew/Resources/xBrew.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = M6C7NX9MUZ;
+				CURRENT_PROJECT_VERSION = 3;
+				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -526,6 +543,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_CATEGORY = "public.app-category.utilities";
 				APP_PRICE_TIER = 0;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -557,9 +575,12 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = M6C7NX9MUZ;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -581,6 +602,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -593,7 +615,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = M6C7NX9MUZ;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

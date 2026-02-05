@@ -74,7 +74,8 @@ final class HomebrewServicesManager: ObservableObject {
         let brewPath = findBrewPath()
         guard let path = brewPath else { return nil }
         
-        return await withCheckedContinuation { continuation in
+        // Run on background thread to avoid blocking main thread
+        return await Task.detached(priority: .userInitiated) {
             let process = Process()
             process.executableURL = URL(fileURLWithPath: path)
             process.arguments = args
@@ -85,18 +86,18 @@ final class HomebrewServicesManager: ObservableObject {
             
             let pipe = Pipe()
             process.standardOutput = pipe
+            process.standardError = FileHandle.nullDevice
             
             do {
                 try process.run()
                 process.waitUntilExit()
                 
                 let data = pipe.fileHandleForReading.readDataToEndOfFile()
-                let output = String(data: data, encoding: .utf8)
-                continuation.resume(returning: output)
+                return String(data: data, encoding: .utf8)
             } catch {
-                continuation.resume(returning: nil)
+                return nil
             }
-        }
+        }.value
     }
     
     private func findBrewPath() -> String? {

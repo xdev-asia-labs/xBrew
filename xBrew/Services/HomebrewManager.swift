@@ -41,6 +41,12 @@ final class HomebrewManager: ObservableObject {
         detectHomebrew()
         setupBackgroundRefresh()
         requestNotificationPermission()
+        
+        // Defer loading state to avoid publishing from init
+        Task { @MainActor [weak self] in
+            self?.isLoading = true
+            self?.checkBrewStatus()
+        }
     }
 
     deinit {

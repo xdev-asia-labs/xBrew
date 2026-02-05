@@ -45,8 +45,7 @@ struct ContentView: View {
             }
         }
         .onAppear {
-            // Initialize on first launch
-            brew.checkBrewStatus()
+            // Services refresh on appear
             Task {
                 await servicesManager.refreshServices()
             }
@@ -117,6 +116,9 @@ struct ContentView: View {
                 
             case .taps:
                 ModernTapsView()
+                
+            case .security:
+                SecurityView()
                 
             case .maintenance:
                 MaintenanceView()
@@ -225,128 +227,132 @@ struct ContentView: View {
     // MARK: - Brew Not Installed
     
     private var brewNotInstalledView: some View {
-        VStack(spacing: DesignSystem.Spacing.lg) {
-            Spacer()
-            
-            Image(systemName: "mug.fill")
-                .font(.system(size: 80))
-                .foregroundColor(.ds.primary)
-            
-            Text("Homebrew Not Installed")
-                .font(.system(size: DesignSystem.Typography.title1, weight: .bold))
-            
-            Text("Install Homebrew to manage packages and applications")
-                .font(.system(size: DesignSystem.Typography.body))
-                .foregroundColor(.secondary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 40)
-            
-            
-            if installer.isInstalling {
+        ScrollView {
+            VStack(spacing: DesignSystem.Spacing.xl) {
+                Spacer(minLength: 40)
+                
+                // Header
                 VStack(spacing: DesignSystem.Spacing.md) {
-                    HStack {
-                        ProgressView().frame(width: 16, height: 16)
-                            .scaleEffect(0.8)
-                        Text("Installing Homebrew...")
-                            .font(.system(size: DesignSystem.Typography.callout, weight: .medium))
-                    }
+                    Image(systemName: "mug.fill")
+                        .font(.system(size: 80))
+                        .foregroundColor(.ds.primary)
                     
-                    // Terminal-like output view
-                    ScrollViewReader { proxy in
-                        ScrollView {
-                            Text(installer.installOutput)
-                                .font(.system(size: 12, design: .monospaced))
-                                .textSelection(.enabled)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding()
-                                .id("bottom")
-                        }
-                        .frame(width: 700, height: 400)
-                        .background(Color.black.opacity(0.9))
-                        .foregroundColor(.green)
-                        .cornerRadius(8)
-                        .onChange(of: installer.installOutput) { _ in
-                            withAnimation {
-                                proxy.scrollTo("bottom", anchor: .bottom)
+                    Text("Homebrew Not Installed")
+                        .font(.system(size: DesignSystem.Typography.title1, weight: .bold))
+                    
+                    Text("Follow these simple steps to install Homebrew and start managing your packages")
+                        .font(.system(size: DesignSystem.Typography.body))
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: 500)
+                }
+                
+                // Installation Steps
+                VStack(alignment: .leading, spacing: DesignSystem.Spacing.lg) {
+                    ForEach(HomebrewInstaller.installationSteps.indices, id: \.self) { index in
+                        let step = HomebrewInstaller.installationSteps[index]
+                        HStack(alignment: .top, spacing: DesignSystem.Spacing.md) {
+                            Image(systemName: step.icon)
+                                .font(.system(size: 24))
+                                .foregroundColor(.ds.primary)
+                                .frame(width: 32)
+                            
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(step.title)
+                                    .font(.system(size: DesignSystem.Typography.headline, weight: .semibold))
+                                Text(step.description)
+                                    .font(.system(size: DesignSystem.Typography.callout))
+                                    .foregroundColor(.secondary)
                             }
                         }
                     }
-                    
-                    Text("⚠️ You may need to enter your password during installation")
-                        .font(.system(size: DesignSystem.Typography.caption1))
-                        .foregroundColor(.secondary)
                 }
-            } else if installer.showInstructions {
-                VStack(alignment: .leading, spacing: DesignSystem.Spacing.md) {
-                    Text("Manual Installation")
-                        .font(.system(size: DesignSystem.Typography.headline, weight: .semibold))
-                    
-                    Text("Copy and paste this command in Terminal:")
-                        .font(.system(size: DesignSystem.Typography.callout))
+                .padding()
+                .frame(maxWidth: 550, alignment: .leading)
+                .background(Color(nsColor: .controlBackgroundColor))
+                .cornerRadius(12)
+                
+                // Command Box
+                VStack(alignment: .leading, spacing: DesignSystem.Spacing.sm) {
+                    Text("Installation Command:")
+                        .font(.system(size: DesignSystem.Typography.caption1, weight: .medium))
                         .foregroundColor(.secondary)
                     
                     HStack {
-                        Text("/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"")
-                            .font(.system(size: 12, design: .monospaced))
-                            .padding(8)
-                            .background(Color(nsColor: .textBackgroundColor))
-                            .cornerRadius(6)
+                        Text(HomebrewInstaller.installCommand)
+                            .font(.system(size: 11, design: .monospaced))
+                            .lineLimit(1)
+                            .truncationMode(.middle)
                             .textSelection(.enabled)
+                        
+                        Spacer()
                         
                         Button {
                             installer.copyInstallCommand()
                         } label: {
-                            Image(systemName: "doc.on.doc")
+                            HStack(spacing: 4) {
+                                Image(systemName: installer.commandCopied ? "checkmark" : "doc.on.doc")
+                                Text(installer.commandCopied ? "Copied!" : "Copy")
+                            }
+                            .font(.system(size: DesignSystem.Typography.caption1, weight: .medium))
                         }
-                        .help("Copy to clipboard")
+                        .buttonStyle(.bordered)
+                        .tint(installer.commandCopied ? .green : .ds.primary)
                     }
+                    .padding(12)
+                    .background(Color.black.opacity(0.8))
+                    .foregroundColor(.green)
+                    .cornerRadius(8)
+                }
+                .frame(maxWidth: 550)
+                
+                // Action Buttons
+                HStack(spacing: DesignSystem.Spacing.md) {
+                    Button {
+                        installer.copyInstallCommand()
+                    } label: {
+                        Label(installer.commandCopied ? "Command Copied!" : "Copy Install Command", 
+                              systemImage: installer.commandCopied ? "checkmark.circle.fill" : "doc.on.doc.fill")
+                            .font(.system(size: DesignSystem.Typography.body, weight: .medium))
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(installer.commandCopied ? .green : .ds.primary)
+                    .controlSize(.large)
                     
                     Button {
-                        installer.showInstructions = false
+                        installer.openTerminal()
                     } label: {
-                        Text("Back")
+                        Label("Open Terminal", systemImage: "terminal.fill")
+                            .font(.system(size: DesignSystem.Typography.body, weight: .medium))
+                    }
+                    .buttonStyle(.bordered)
+                    .controlSize(.large)
+                }
+                
+                // Help Links
+                HStack(spacing: DesignSystem.Spacing.lg) {
+                    Button {
+                        installer.openHomebrewWebsite()
+                    } label: {
+                        Label("Visit brew.sh", systemImage: "safari")
+                            .font(.system(size: DesignSystem.Typography.caption1))
                     }
                     .buttonStyle(.plain)
-                }
-                .frame(width: 600)
-                .padding()
-                .background(Color.ds.info.opacity(0.1))
-                .cornerRadius(12)
-            } else {
-                Button {
-                    Task {
-                        let success = await installer.installHomebrew()
-                        if success {
-                            // Wait a bit then refresh
-                            try? await Task.sleep(nanoseconds: 2_000_000_000)
-                            brew.checkBrewStatus()
-                        }
+                    .foregroundColor(.ds.primary)
+                    
+                    Button {
+                        brew.checkBrewStatus()
+                    } label: {
+                        Label("Check Again", systemImage: "arrow.clockwise")
+                            .font(.system(size: DesignSystem.Typography.caption1))
                     }
-                } label: {
-                    Label("Install Homebrew", systemImage: "arrow.down.circle.fill")
-                        .font(.system(size: DesignSystem.Typography.body, weight: .medium))
+                    .buttonStyle(.plain)
+                    .foregroundColor(.secondary)
                 }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.large)
                 
-                Button {
-                    installer.showInstructions = true
-                } label: {
-                    Text("Show Manual Instructions")
-                        .font(.system(size: DesignSystem.Typography.callout))
-                }
-                .buttonStyle(.plain)
-                
-                Button {
-                    installer.installWithAppleScript()
-                } label: {
-                    Text("Install in Terminal App")
-                        .font(.system(size: DesignSystem.Typography.caption1))
-                }
-                .buttonStyle(.plain)
+                Spacer(minLength: 40)
             }
-            
-            Spacer()
+            .padding()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(DesignSystem.Colors.background)
@@ -367,6 +373,8 @@ struct ContentView: View {
             let count = servicesManager.runningServicesCount
             return count > 0 ? "\(count)" : nil
         case .taps:
+            return nil
+        case .security:
             return nil
         case .maintenance:
             let count = brew.totalOutdated

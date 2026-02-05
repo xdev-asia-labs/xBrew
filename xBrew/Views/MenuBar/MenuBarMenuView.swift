@@ -4,6 +4,7 @@ import SwiftUI
 struct MenuBarMenuView: View {
     @StateObject private var brew = HomebrewManager.shared
     @StateObject private var services = HomebrewServicesManager.shared
+    @Environment(\.openWindow) private var openWindow
 
     var body: some View {
         Group {
@@ -75,10 +76,13 @@ struct MenuBarMenuView: View {
             // App Controls
             Section {
                 Button {
-                    NSApplication.shared.activate(ignoringOtherApps: true)
-                    if let window = NSApplication.shared.windows.first(where: { $0.canBecomeMain }) {
-                        window.makeKeyAndOrderFront(nil)
+                    // Check if main window already exists
+                    if let existingWindow = NSApplication.shared.windows.first(where: { $0.identifier?.rawValue == "main" || $0.title.contains("xBrew") }) {
+                        existingWindow.makeKeyAndOrderFront(nil)
+                    } else {
+                        openWindow(id: "main")
                     }
+                    NSApplication.shared.activate(ignoringOtherApps: true)
                 } label: {
                     Label("Open xBrew", systemImage: "macwindow")
                 }

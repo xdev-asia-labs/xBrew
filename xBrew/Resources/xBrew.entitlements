@@ -21,26 +21,10 @@
 		<string>iCloud.$(CFBundleIdentifier)</string>
 		<string>iCloud.asia.xdev.xBrew</string>
 	</array>
-	<key>com.apple.security.scripting-targets</key>
-	<dict>
-		<key>com.apple.Terminal</key>
-		<array>
-			<string>com.apple.Terminal</string>
-		</array>
-	</dict>
-	<key>com.apple.security.temporary-exception.apple-events</key>
-	<array>
-		<string>com.apple.Terminal</string>
-	</array>
 	<key>com.apple.security.temporary-exception.files.absolute-path.read-only</key>
 	<array>
-		<string>/usr/local/</string>
 		<string>/opt/homebrew/</string>
-	</array>
-	<key>com.apple.security.temporary-exception.files.absolute-path.read-write</key>
-	<array>
 		<string>/usr/local/</string>
-		<string>/opt/homebrew/</string>
 	</array>
 </dict>
 </plist>

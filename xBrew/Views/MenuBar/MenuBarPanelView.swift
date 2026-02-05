@@ -300,14 +300,18 @@ struct MenuBarActionButton: View {
 // MARK: - Footer
 
 struct MenuBarFooter: View {
-
+    @Environment(\.openWindow) private var openWindow
+    
     var body: some View {
         VStack(spacing: 2) {
             MenuBarFooterButton(title: "Open xBrew", icon: "macwindow", shortcut: "⌘O") {
-                NSApplication.shared.activate(ignoringOtherApps: true)
-                if let window = NSApplication.shared.windows.first(where: { $0.canBecomeMain }) {
-                    window.makeKeyAndOrderFront(nil)
+                // Check if main window already exists
+                if let existingWindow = NSApplication.shared.windows.first(where: { $0.identifier?.rawValue == "main" || $0.title.contains("xBrew") }) {
+                    existingWindow.makeKeyAndOrderFront(nil)
+                } else {
+                    openWindow(id: "main")
                 }
+                NSApplication.shared.activate(ignoringOtherApps: true)
             }
 
             if #available(macOS 14.0, *) {
