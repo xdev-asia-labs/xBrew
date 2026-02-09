@@ -10,7 +10,7 @@ enum NavigationItem: String, CaseIterable, Identifiable {
     case taps = "Taps"
     case security = "Security"
     case maintenance = "Maintenance"
-    case support = "Support"
+    case community = "Community"
     
     var id: String { rawValue }
     
@@ -23,7 +23,7 @@ enum NavigationItem: String, CaseIterable, Identifiable {
         case .taps: return "arrow.triangle.branch"
         case .security: return "shield.lefthalf.filled"
         case .maintenance: return "wrench.and.screwdriver.fill"
-        case .support: return "heart.fill"
+        case .community: return "person.3.fill"
         }
     }
     
@@ -36,7 +36,7 @@ enum NavigationItem: String, CaseIterable, Identifiable {
         case .taps: return "Package repositories"
         case .security: return "Vulnerability analysis"
         case .maintenance: return "Cleanup & health"
-        case .support: return "Support the developer"
+        case .community: return "Community & Feedback"
         }
     }
     
@@ -49,7 +49,7 @@ enum NavigationItem: String, CaseIterable, Identifiable {
         case .taps: return "Taps"
         case .security: return "Bảo mật"
         case .maintenance: return L10n.maintenance.localized
-        case .support: return "Hỗ trợ"
+        case .community: return "Cộng đồng"
         }
     }
 }

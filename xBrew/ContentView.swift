@@ -123,8 +123,8 @@ struct ContentView: View {
             case .maintenance:
                 MaintenanceView()
                 
-            case .support:
-                SupportView()
+            case .community:
+                CommunityView()
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -322,10 +322,19 @@ struct ContentView: View {
                     Button {
                         installer.openTerminal()
                     } label: {
-                        Label("Open Terminal", systemImage: "terminal.fill")
-                            .font(.system(size: DesignSystem.Typography.body, weight: .medium))
+                        if installer.terminalOpenFailed {
+                            Label("Failed to Open Terminal", systemImage: "exclamationmark.triangle.fill")
+                                .font(.system(size: DesignSystem.Typography.body, weight: .medium))
+                        } else if installer.terminalOpened {
+                            Label("Terminal Opened!", systemImage: "checkmark.circle.fill")
+                                .font(.system(size: DesignSystem.Typography.body, weight: .medium))
+                        } else {
+                            Label("Open Terminal", systemImage: "terminal.fill")
+                                .font(.system(size: DesignSystem.Typography.body, weight: .medium))
+                        }
                     }
                     .buttonStyle(.bordered)
+                    .tint(installer.terminalOpenFailed ? .red : (installer.terminalOpened ? .green : nil))
                     .controlSize(.large)
                 }
                 
@@ -379,7 +388,7 @@ struct ContentView: View {
         case .maintenance:
             let count = brew.totalOutdated
             return count > 0 ? "\(count)" : nil
-        case .support:
+        case .community:
             return nil
         }
     }

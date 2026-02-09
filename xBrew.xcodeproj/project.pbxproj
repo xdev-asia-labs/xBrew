@@ -46,7 +46,7 @@
 		SECURITY1234567890ABCD1 /* SecurityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = SECURITY1234567890ABCD2 /* SecurityManager.swift */; };
 		SECVIEW12345678901ABC1 /* SecurityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SECVIEW12345678901ABC2 /* SecurityView.swift */; };
 		SKELETON123456789ABCDE1 /* SkeletonLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = SKELETON123456789ABCDE2 /* SkeletonLoading.swift */; };
-		SUPPORT1234567890ABCDE1 /* SupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SUPPORT1234567890ABCDE2 /* SupportView.swift */; };
+		SUPPORT1234567890ABCDE1 /* CommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SUPPORT1234567890ABCDE2 /* CommunityView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,7 +104,7 @@
 		SECURITY1234567890ABCD2 /* SecurityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityManager.swift; sourceTree = "<group>"; };
 		SECVIEW12345678901ABC2 /* SecurityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityView.swift; sourceTree = "<group>"; };
 		SKELETON123456789ABCDE2 /* SkeletonLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonLoading.swift; sourceTree = "<group>"; };
-		SUPPORT1234567890ABCDE2 /* SupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportView.swift; sourceTree = "<group>"; };
+		SUPPORT1234567890ABCDE2 /* CommunityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -138,7 +138,7 @@
 				3941C278280158ABA4C8F8BE /* ModernServicesView.swift */,
 				16CDCCF0E54015630A518D3A /* ModernTapsView.swift */,
 				DEF67890INSTALL0PACKAGE2 /* InstallPackageSheet.swift */,
-				SUPPORT1234567890ABCDE2 /* SupportView.swift */,
+				SUPPORT1234567890ABCDE2 /* CommunityView.swift */,
 				SECVIEW12345678901ABC2 /* SecurityView.swift */,
 				A3A1F11655F1232624982615 /* SettingsView.swift */,
 				B190146BBF33F5490E6EC956 /* Components */,
@@ -370,7 +370,7 @@
 				8B0F9491FDF8F81B7C316A68 /* SettingsManager.swift in Sources */,
 				D636D5DEBFAFAB86682872E6 /* SettingsView.swift in Sources */,
 				ABC12345INSTALL0PACKAGE1 /* InstallPackageSheet.swift in Sources */,
-				SUPPORT1234567890ABCDE1 /* SupportView.swift in Sources */,
+				SUPPORT1234567890ABCDE1 /* CommunityView.swift in Sources */,
 				7E92573510F90DC168C240F1 /* StatCard.swift in Sources */,
 				E23A9926BA32918E020CB87F /* ViewModifiers.swift in Sources */,
 				SKELETON123456789ABCDE1 /* SkeletonLoading.swift in Sources */,

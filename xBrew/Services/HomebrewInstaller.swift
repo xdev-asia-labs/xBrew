@@ -8,6 +8,8 @@ import AppKit
 final class HomebrewInstaller: ObservableObject {
     @Published var showInstructions = false
     @Published var commandCopied = false
+    @Published var terminalOpenFailed = false
+    @Published var terminalOpened = false
     
     /// The official Homebrew installation command
     static let installCommand = "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
@@ -38,10 +40,38 @@ final class HomebrewInstaller: ObservableObject {
         }
     }
     
-    /// Open Terminal.app using NSWorkspace (sandbox-safe)
+    /// Open Terminal.app using NSWorkspace with completion handler for better error handling
     func openTerminal() {
         let terminalURL = URL(fileURLWithPath: "/System/Applications/Utilities/Terminal.app")
-        NSWorkspace.shared.open(terminalURL)
+        
+        // Use the async configuration API for better error handling
+        let configuration = NSWorkspace.OpenConfiguration()
+        configuration.activates = true
+        
+        NSWorkspace.shared.openApplication(at: terminalURL, configuration: configuration) { [weak self] app, error in
+            Task { @MainActor in
+                if let error = error {
+                    print("Failed to open Terminal: \(error.localizedDescription)")
+                    self?.terminalOpenFailed = true
+                    self?.terminalOpened = false
+                    
+                    // Reset after 3 seconds
+                    Task {
+                        try? await Task.sleep(nanoseconds: 3_000_000_000)
+                        self?.terminalOpenFailed = false
+                    }
+                } else if app != nil {
+                    self?.terminalOpened = true
+                    self?.terminalOpenFailed = false
+                    
+                    // Reset after 2 seconds
+                    Task {
+                        try? await Task.sleep(nanoseconds: 2_000_000_000)
+                        self?.terminalOpened = false
+                    }
+                }
+            }
+        }
     }
     
     /// Open Homebrew website

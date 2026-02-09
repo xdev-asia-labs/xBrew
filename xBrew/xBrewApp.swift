@@ -22,7 +22,7 @@ struct xBrewApp: App {
 
             // Custom Commands
             CommandGroup(after: .appInfo) {
-                Button("Check for Updates...") {
+                Button("Check for Outdated Packages...") {
                     Task { await brew.refreshOutdated() }
                 }
                 .keyboardShortcut("u", modifiers: [.command, .shift])

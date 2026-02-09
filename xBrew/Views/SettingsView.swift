@@ -277,11 +277,6 @@ struct AboutTab: View {
 
             // Links
             HStack(spacing: DesignSystem.Spacing.lg) {
-                Link(destination: URL(string: "https://buymeacoffee.com/tdduydev")!) {
-                    Label("Buy Me a Coffee", systemImage: "heart.fill")
-                }
-                .foregroundColor(.pink)
-
                 Link(destination: URL(string: "https://github.com/xdev-asia/xBrew")!) {
                     Label("GitHub", systemImage: "link")
                 }
