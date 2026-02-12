@@ -11,11 +11,11 @@
 "dashboard.total_packages" = "Tổng số gói";
 "dashboard.outdated" = "Cần cập nhật";
 "dashboard.services_running" = "Dịch vụ đang chạy";
-"dashboard.updates_available" = "Có bản cập nhật";
+"dashboard.updates_available" = "Gói cần nâng cấp";
 "dashboard.package_distribution" = "Phân loại gói";
 "dashboard.formulas" = "Gói cài đặt";
 "dashboard.quick_actions" = "Thao tác nhanh";
-"dashboard.update_all" = "Cập nhật tất cả";
+"dashboard.update_all" = "Làm mới danh sách gói";
 "dashboard.cleanup" = "Dọn dẹp";
 "dashboard.health_check" = "Kiểm tra hệ thống";
 "dashboard.system_info" = "Thông tin hệ thống";
@@ -45,7 +45,7 @@
 "maintenance.all_up_to_date" = "Tất cả gói đã cập nhật";
 "maintenance.needs_updating" = "gói cần cập nhật";
 "maintenance.actions" = "Thao tác bảo trì";
-"maintenance.update_homebrew" = "Cập nhật Homebrew";
+"maintenance.update_homebrew" = "Làm mới danh mục gói";
 "maintenance.run_diagnostics" = "Chạy chẩn đoán";
 "maintenance.cleanup_old" = "Dọn dẹp phiên bản cũ";
 "maintenance.run" = "Chạy";
@@ -95,12 +95,12 @@
 "settings.compact_mode_help" = "Dùng giao diện thu gọn cho danh sách gói";
 
 /* Settings - Homebrew Updates */
-"settings.updates" = "Cập nhật";
-"settings.auto_check_updates" = "Tự động kiểm tra cập nhật";
-"settings.auto_check_updates_help" = "Định kỳ kiểm tra các gói cần cập nhật";
+"settings.updates" = "Theo dõi gói";
+"settings.auto_check_updates" = "Tự động kiểm tra gói cũ";
+"settings.auto_check_updates_help" = "Định kỳ kiểm tra các gói đã lỗi thời";
 "settings.check_interval" = "Khoảng thời gian kiểm tra";
-"settings.auto_cleanup" = "Tự động dọn dẹp sau cập nhật";
-"settings.auto_cleanup_help" = "Tự động dọn dẹp sau khi cập nhật gói";
+"settings.auto_cleanup" = "Tự động dọn dẹp sau thao tác";
+"settings.auto_cleanup_help" = "Tự động dọn dẹp sau các thao tác với gói";
 
 /* Settings - Performance */
 "settings.performance" = "Hiệu suất";
@@ -117,10 +117,10 @@
 
 /* Settings - Notifications */
 "settings.outdated_packages" = "Gói cần cập nhật";
-"settings.outdated_packages_help" = "Thông báo khi có gói cần cập nhật";
+"settings.outdated_packages_help" = "Thông báo khi phát hiện gói đã lỗi thời";
 "settings.minimum_to_notify" = "Số lượng tối thiểu để thông báo";
-"settings.update_complete" = "Cập nhật hoàn tất";
-"settings.update_complete_help" = "Thông báo khi cập nhật gói xong";
+"settings.update_complete" = "Thao tác hoàn tất";
+"settings.update_complete_help" = "Thông báo khi thao tác với gói hoàn tất";
 "settings.service_changes" = "Thay đổi dịch vụ";
 "settings.service_changes_help" = "Thông báo khi dịch vụ bắt đầu hoặc dừng";
 "settings.system_settings" = "Cài đặt hệ thống";

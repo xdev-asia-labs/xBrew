@@ -155,7 +155,7 @@ struct MenuBarOutdatedSection: View {
                     Image(systemName: "exclamationmark.triangle.fill")
                         .foregroundColor(.orange)
 
-                    Text("\(brew.totalOutdated) Updates Available")
+                    Text("\(brew.totalOutdated) Outdated Packages")
                         .font(.system(size: 12, weight: .medium))
 
                     Spacer()
@@ -215,12 +215,12 @@ struct MenuBarQuickActions: View {
     var body: some View {
         VStack(spacing: 2) {
             MenuBarActionButton(
-                title: "Update All",
+                title: "Refresh Packages",
                 icon: "arrow.clockwise.circle.fill",
-                shortcut: "⌘U",
-                isLoading: brew.isUpdating
+                shortcut: "⌘R",
+                isLoading: brew.isLoading
             ) {
-                Task { await brew.updateBrew() }
+                Task { await brew.refreshAll(forceRefresh: true) }
             }
 
             MenuBarActionButton(

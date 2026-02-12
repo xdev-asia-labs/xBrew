@@ -127,17 +127,17 @@ struct DashboardView: View {
                         GridItem(.flexible())
                     ], spacing: DesignSystem.Spacing.sm) {
                         QuickActionButton(
-                            title: "Update All",
+                            title: "Refresh Packages",
                             icon: "arrow.clockwise.circle.fill",
                             color: .ds.primary,
-                            isLoading: brew.isUpdating
+                            isLoading: brew.isLoading
                         ) {
                             Task {
-                                updateOutput = "Updating Homebrew...\n"
+                                updateOutput = "Refreshing package data...\n"
                                 showingUpdateOutput = true
                                 
-                                updateOutput += await brew.updateBrew()
-                                await brew.refreshOutdated()
+                                await brew.refreshAll(forceRefresh: true)
+                                updateOutput += "Refresh complete.\n"
                             }
                         }
                         
@@ -197,7 +197,7 @@ struct DashboardView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(DesignSystem.Colors.background)
         .sheet(isPresented: $showingUpdateOutput) {
-            TerminalLogSheet(output: updateOutput, title: "Update Homebrew")
+            TerminalLogSheet(output: updateOutput, title: "Refresh Packages")
         }
         .sheet(isPresented: $showingCleanupOutput) {
             TerminalLogSheet(output: cleanupOutput, title: "Cleanup")

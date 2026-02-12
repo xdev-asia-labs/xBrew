@@ -88,17 +88,16 @@ struct MaintenanceView: View {
                     Text("Maintenance Actions")
                         .sectionHeader()
                     
-                    // Update Homebrew
+                    // Refresh Package Index
                     MaintenanceActionCard(
-                        title: "Update Homebrew",
-                        description: "Update Homebrew itself to the latest version",
-                        icon: "arrow.down.circle.fill",
+                        title: "Refresh Package Index",
+                        description: "Refresh Homebrew package definitions and formulae",
+                        icon: "arrow.clockwise.circle.fill",
                         color: .ds.primary,
                         isLoading: isUpdating,
                         action: {
                             isUpdating = true
                             Task {
-                                _ = await brew.updateBrew()
                                 await brew.refreshAll(forceRefresh: true)
                                 isUpdating = false
                             }

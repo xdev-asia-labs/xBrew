@@ -25,22 +25,6 @@ struct MenuBarMenuView: View {
 
             // Quick Actions
             Section {
-                Button {
-                    Task { await brew.updateBrew() }
-                } label: {
-                    Label("Update Homebrew", systemImage: "arrow.clockwise")
-                }
-                .keyboardShortcut("u", modifiers: .command)
-                .disabled(brew.isUpdating)
-
-                if brew.totalOutdated > 0 {
-                    Button {
-                        Task { await brew.upgradeAll() }
-                    } label: {
-                        Label("Upgrade All Packages", systemImage: "arrow.up.circle")
-                    }
-                    .disabled(brew.isUpdating)
-                }
 
                 Button {
                     Task { await brew.cleanup() }

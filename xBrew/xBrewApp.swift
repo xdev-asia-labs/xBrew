@@ -29,19 +29,6 @@ struct xBrewApp: App {
             }
 
             CommandMenu("Homebrew") {
-                Button("Update Homebrew") {
-                    Task { await brew.updateBrew() }
-                }
-                .keyboardShortcut("u", modifiers: .command)
-                .disabled(brew.isUpdating)
-
-                Button("Upgrade All Packages") {
-                    Task { await brew.upgradeAll() }
-                }
-                .disabled(brew.isUpdating || brew.totalOutdated == 0)
-
-                Divider()
-
                 Button("Cleanup") {
                     Task { await brew.cleanup() }
                 }

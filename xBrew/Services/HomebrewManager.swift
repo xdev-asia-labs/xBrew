@@ -84,8 +84,8 @@ final class HomebrewManager: ObservableObject {
             let newCount = totalOutdated - previousOutdated
             if newCount >= settings.outdatedThreshold {
                 sendNotification(
-                    title: "Updates Available",
-                    body: "\(newCount) new package update\(newCount > 1 ? "s" : "") available"
+                    title: "Outdated Packages Found",
+                    body: "\(newCount) outdated package\(newCount > 1 ? "s" : "") found"
                 )
             }
         }
@@ -261,25 +261,6 @@ final class HomebrewManager: ObservableObject {
     }
     
     // MARK: - Maintenance
-
-    func updateBrew() async -> String {
-        isUpdating = true
-        defer {
-            isUpdating = false
-            notifyIfEnabled(title: "Update Complete", body: "Homebrew has been updated")
-        }
-        return await runBrewCommand(["update"]) ?? "Update failed"
-    }
-
-    func upgradeAll() async -> String {
-        isUpdating = true
-        defer {
-            isUpdating = false
-            Task { await refreshOutdated() }
-            notifyIfEnabled(title: "Upgrade Complete", body: "All packages have been upgraded")
-        }
-        return await runBrewCommand(["upgrade"]) ?? "Upgrade failed"
-    }
 
     func cleanup() async -> String {
         isUpdating = true

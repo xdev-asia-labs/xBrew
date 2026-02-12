@@ -11,11 +11,11 @@
 "dashboard.total_packages" = "Total Packages";
 "dashboard.outdated" = "Outdated";
 "dashboard.services_running" = "Services Running";
-"dashboard.updates_available" = "Updates available";
+"dashboard.updates_available" = "Outdated packages";
 "dashboard.package_distribution" = "Package Distribution";
 "dashboard.formulas" = "Formulas";
 "dashboard.quick_actions" = "Quick Actions";
-"dashboard.update_all" = "Update All";
+"dashboard.update_all" = "Refresh Packages";
 "dashboard.cleanup" = "Cleanup";
 "dashboard.health_check" = "Health Check";
 "dashboard.system_info" = "System Information";
@@ -45,7 +45,7 @@
 "maintenance.all_up_to_date" = "All packages up to date";
 "maintenance.needs_updating" = "packages need updating";
 "maintenance.actions" = "Maintenance Actions";
-"maintenance.update_homebrew" = "Update Homebrew";
+"maintenance.update_homebrew" = "Refresh Package Index";
 "maintenance.run_diagnostics" = "Run Diagnostics";
 "maintenance.cleanup_old" = "Cleanup Old Versions";
 "maintenance.run" = "Run";
@@ -95,12 +95,12 @@
 "settings.compact_mode_help" = "Use compact layout for package lists";
 
 /* Settings - Homebrew Updates */
-"settings.updates" = "Updates";
-"settings.auto_check_updates" = "Auto Check for Updates";
+"settings.updates" = "Package Monitoring";
+"settings.auto_check_updates" = "Auto Check for Outdated Packages";
 "settings.auto_check_updates_help" = "Periodically check for outdated packages";
 "settings.check_interval" = "Check Interval";
-"settings.auto_cleanup" = "Auto Cleanup After Updates";
-"settings.auto_cleanup_help" = "Automatically run cleanup after updating packages";
+"settings.auto_cleanup" = "Auto Cleanup After Operations";
+"settings.auto_cleanup_help" = "Automatically run cleanup after package operations";
 
 /* Settings - Performance */
 "settings.performance" = "Performance";
@@ -117,10 +117,10 @@
 
 /* Settings - Notifications */
 "settings.outdated_packages" = "Outdated Packages";
-"settings.outdated_packages_help" = "Notify when packages have updates available";
+"settings.outdated_packages_help" = "Notify when outdated packages are found";
 "settings.minimum_to_notify" = "Minimum to notify";
-"settings.update_complete" = "Update Complete";
-"settings.update_complete_help" = "Notify when package updates finish";
+"settings.update_complete" = "Operation Complete";
+"settings.update_complete_help" = "Notify when package operations finish";
 "settings.service_changes" = "Service Changes";
 "settings.service_changes_help" = "Notify when services start or stop";
 "settings.system_settings" = "System Settings";

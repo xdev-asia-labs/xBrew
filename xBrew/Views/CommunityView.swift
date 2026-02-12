@@ -56,7 +56,7 @@ struct CommunityView: View {
                         title: "Báo lỗi & Yêu cầu tính năng",
                         description: "Mở issue trên GitHub để báo lỗi hoặc đề xuất tính năng mới",
                         action: {
-                            if let url = URL(string: "https://github.com/xdev-asia/xBrew/issues") {
+                            if let url = URL(string: "https://github.com/xdev-asia-labs/xBrew/issues") {
                                 NSWorkspace.shared.open(url)
                             }
                         }
@@ -69,7 +69,7 @@ struct CommunityView: View {
                         title: "Star trên GitHub",
                         description: "Để lại một ⭐ trên GitHub để ủng hộ dự án mã nguồn mở",
                         action: {
-                            if let url = URL(string: "https://github.com/xdev-asia/xBrew") {
+                            if let url = URL(string: "https://github.com/xdev-asia-labs/xBrew") {
                                 NSWorkspace.shared.open(url)
                             }
                         }
@@ -94,7 +94,7 @@ struct CommunityView: View {
                 
                 // Social Links
                 HStack(spacing: DesignSystem.Spacing.lg) {
-                    Link(destination: URL(string: "https://github.com/xdev-asia/xBrew")!) {
+                    Link(destination: URL(string: "https://github.com/xdev-asia-labs/xBrew")!) {
                         Label("GitHub", systemImage: "link")
                     }
                     
